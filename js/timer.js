@@ -1,45 +1,43 @@
 $(document).ready(function(){ 
 
 
-
-var timeRuning = false;
-var down = {};
 // colors
-
 function colorIddle(){
-    $( "time" ).css( "color", "black");
+    $("time").css("color", "black");
 }
 
 function colorReady(){
-    $( "time" ).css( "color", "lightgreen");
+    $("time").css("color", "lightgreen");
 }
 
 function colorRuning(){
-    $( "time" ).css( "color", "blue");
+    $("time").css("color", "blue");
 }
 
 
+var timeRuning = false;
+var down = {};
+var trigerStep = 1;
 
 function spaceDown(e){
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    if( e.keyCode == 32 || charCode == 32 ){
-        if( down['32'] == null) {    
-            if( timeRuning == true ){
-                timeRuning = false;
-                // stop time
-                console.log( "stop time // var timeRuning = " + timeRuning );
-                colorIddle();
-                down['32'] = null;
-                return;
-            }
-
-            if( timeRuning == false ){
-                timeRuning = true;
-                // ready to start time in spaceUp()
-                console.log( "Ready to start // var timeRuning = " + timeRuning );
+    if(e.keyCode == 32){
+            // ready to start time
+        if(trigerStep % 3 == 1){
+            if(down['32'] == null){    
+                trigerStep++;
+                console.log("Ready to start // var timeRuning = " + timeRuning + " // trigerStep = " + trigerStep %3);
                 colorReady();
                 down['32'] = true;
-                return;
+            }
+        }
+            // stop time
+        if(trigerStep % 3 == 0){
+            if(down['32'] == null){
+                trigerStep++;
+                console.log("stop time // var timeRuning = " + timeRuning + " // trigerStep = " + trigerStep %3);
+                colorIddle();
+                down['32'] = true;
             }
         }
     }
@@ -47,14 +45,16 @@ function spaceDown(e){
 
 function spaceUp(e){
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    if( e.keyCode == 32 ){
-            if( timeRuning == true ){
-                // start time
-                console.log( "start time // var timeRuning = " + timeRuning )
+    if(e.keyCode == 32){
+            // start time
+            if(trigerStep % 3 == 2){
+                trigerStep++;
+                console.log("start time // var timeRuning = " + timeRuning + " // trigerStep = " + trigerStep %3)
                 colorRuning();
                 down['32'] = null;
-                return;
-            } 
+            } else {
+                down['32'] = null;
+            }
     }
 }
 
