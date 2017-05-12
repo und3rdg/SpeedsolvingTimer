@@ -1,34 +1,49 @@
 $(document).ready(function(){ 
 
+String.prototype.convTime = function () {
+    var msec    = this % 1000;
+    var sec_num = Math.floor(this / 1000);
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours + ":" + minutes + ":" + seconds + "." + msec;
+}
+
 var Timer = {
     iddle: function(){
         $("time").css("color", "black");
         this.runTime();
-        console.log("stop time // trigerStatus = " + this.trigerStatus);
+        db.log("stop time // trigerStatus = " + this.trigerStatus);
     },
     ready: function(){
         $("time").css("color", "lightgreen");
-        this.timeMs = 0;
-        console.log("Ready to start // trigerStatus = " + this.trigerStatus);
+        db.log("Ready to start // trigerStatus = " + this.trigerStatus);
     },
     runing: function(){
+        this.timeDate[0] = new Date();
         $("time").css("color", "blue");
         this.runTime();
-        console.log("start time // trigerStatus = " + this.trigerStatus);
+        db.log("start time // trigerStatus = " + this.trigerStatus);
     },
-    timeMs: 0,
+    timeDate: [],
+    timeMs: {},
     runTime: function(){
             if(this.trigerStatus == "stop"){
                 clearTimeout(timeout);
-                $('time').text(Timer.timeMs);
+                $('time').text(this.timeMs.toString().convTime());
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
-                    Timer.timeMs++;
-                    console.log(Timer.timeMs);
-                    $('time').text(Timer.timeMs);   
+                    Timer.timeDate[1] = new Date;
+                    Timer.timeMs = Timer.timeDate[1] - Timer.timeDate[0];
+                    db.log(Timer.timeMs);
+                    $('time').text(Timer.timeMs.toString().convTime());   
                     Timer.runTime();
-                },100)
+                },100);
             }
     },
     trigerStatus: "stop",
@@ -73,5 +88,13 @@ var Timer = {
 
 Timer.init();
 
+var db = {
+    db: 1,
+    log: function(x){
+        if(this.db == 1){
+            console.log(x);
+        }
+    },
+}
 
 });
