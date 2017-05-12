@@ -1,0 +1,8 @@
+@font-face{
+    font-family: "digital";
+    src: url('/css/digital.ttf')
+}
+time{
+    font-family: digital;
+    font-size: 9em;
+}
