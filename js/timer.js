@@ -1,38 +1,53 @@
-//$(document).ready(function(){ 
+$(document).ready(function(){ 
 
 var Timer = {
-    iddle: function(){ // stop
-        $("time").css("color", "black")
-        console.log("stop time // trigerStep = " + this.trigerStep %3);
+    iddle: function(){
+        $("time").css("color", "black");
+        this.runTime();
+        console.log("stop time // trigerStatus = " + this.trigerStatus);
     },
     ready: function(){
         $("time").css("color", "lightgreen");
-        console.log("Ready to start // trigerStep = " + this.trigerStep %3);
+        this.timeMs = 0;
+        console.log("Ready to start // trigerStatus = " + this.trigerStatus);
     },
     runing: function(){
-        $("time").css("color", "blue")
-        console.log("start time // trigerStep = " + this.trigerStep %3)
+        $("time").css("color", "blue");
+        this.runTime();
+        console.log("start time // trigerStatus = " + this.trigerStatus);
     },
-    trigerStep: 1,
-    // 0 start, spaceUp //ready to stop on keyDown
-    // 1 stop, spaceDown // do noting on keyUp
-    // 2 ready, spaceDown // ready to start on keyUp
+    timeMs: 0,
+    runTime: function(){
+            if(this.trigerStatus == "stop"){
+                clearTimeout(timeout);
+                $('time').text(Timer.timeMs);
+            }
+            if(this.trigerStatus == "running"){
+                var timeout = setTimeout(function(){
+                    Timer.timeMs++;
+                    console.log(Timer.timeMs);
+                    $('time').text(Timer.timeMs);   
+                    Timer.runTime();
+                },100)
+            }
+    },
+    trigerStatus: "stop",
     down: {}, // key down spamming fix
     initKey: 32, // space
     spaceDown: function(e){
         var keycode = (e.keyCode ? e.keyCode : e.which);
         if(e.keyCode == this.initKey){
-                // ready to start time
-            if(this.trigerStep % 3 == 1){
+                // ready to run time
+            if(this.trigerStatus == "stop"){
                 if(this.down[this.initKey] == null){    
-                    this.trigerStep++;
+                    this.trigerStatus = "ready";
                     this.ready();
                 }
             }
                 // stop time
-            if(this.trigerStep % 3 == 0){
+            if(this.trigerStatus == "running"){
                 if(this.down[this.initKey] == null){
-                    this.trigerStep++;
+                    this.trigerStatus = "stop";
                     this.iddle();
                 }
             }
@@ -43,8 +58,8 @@ var Timer = {
         var keycode = (e.keyCode ? e.keyCode : e.which);
         if(e.keyCode == this.initKey){
             // start time
-            if(this.trigerStep % 3 == 2){
-                this.trigerStep++;
+            if(this.trigerStatus == "ready"){
+                this.trigerStatus = "running";
                 this.runing();
             } 
             this.down[this.initKey] = null;
@@ -59,4 +74,4 @@ var Timer = {
 Timer.init();
 
 
-//});
+});
