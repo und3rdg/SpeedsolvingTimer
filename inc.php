@@ -1,7 +1,7 @@
 <?php
 
 // last scores to show
-$limit = 5;
+$limit = 12;
 
 //db table
 $table = 'score';

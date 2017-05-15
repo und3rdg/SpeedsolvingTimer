@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+//$(document).ready(function(){ 
 
 String.prototype.convTime = function () {
     var msec    = this % 1000;
@@ -35,7 +35,7 @@ var Timer = {
                 clearTimeout(timeout);
                 //$('time').text(this.timeMs.toString().convTime());
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
-                this.ajax(this.timeMs);
+                this.ajaxInsert(this.timeMs);
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
@@ -81,14 +81,29 @@ var Timer = {
             this.down[this.initKey] = null;
         }
     },
-    ajax: function(getTime){
+    ajaxInsert: function(getTime){
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
         }
-        xmlhttp.open("POST", "insert.php?time_ms=" + getTime, true);
+        xmlhttp.open("GET", "insert.php?time_ms=" + getTime, true);
         xmlhttp.send();
 
-        return false;
+        Timer.ajaxExtract();
+    },
+    ajaxExtract: function(){
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
+        }
+        xmlhttp.onreadystatechange = function() {
+            document.getElementById("last_times").innerHTML = this.responseText;
+            $("last_times").text(this.responseText);
+        }; 
+        xmlhttp.open("GET", "extract.php", true);
+        xmlhttp.send();
     },
     init: function(){
         $( document ).keydown(this.spaceDown.bind(this));
@@ -99,9 +114,7 @@ var Timer = {
 Timer.init();
 
 
-//var lastTimes = {
     
-//}
 var debug = {
     debug: 1,
     log: function(x){
@@ -111,4 +124,4 @@ var debug = {
     },
 }
 
-});
+//});
