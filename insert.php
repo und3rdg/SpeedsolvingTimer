@@ -1,12 +1,15 @@
 <?php
 
+$time_ms = intval($_GET['time_ms']);
+
 $table = 'score';
 $into = 'times_ms';
-$values = rand(1,1000000);
+$values = $time_ms;
 
+if($time_ms > 0){
 $sql = "INSERT INTO $table ($into) VALUES ($values)";
 
-if($debug == true) {
+
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully ($values)";
     } else {

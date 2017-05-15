@@ -16,31 +16,32 @@ String.prototype.convTime = function () {
 var Timer = {
     iddle: function(){
         $("time").css("color", "black");
-        this.runTime();
-        db.log("stop time // trigerStatus = " + this.trigerStatus);
+        debug.log("stop time // trigerStatus = " + this.trigerStatus);
     },
     ready: function(){
         $("time").css("color", "lightgreen");
-        db.log("Ready to start // trigerStatus = " + this.trigerStatus);
+        debug.log("Ready to start // trigerStatus = " + this.trigerStatus);
     },
     runing: function(){
         this.timeDate[0] = new Date();
         $("time").css("color", "blue");
         this.runTime();
-        db.log("start time // trigerStatus = " + this.trigerStatus);
+        debug.log("start time // trigerStatus = " + this.trigerStatus);
     },
     timeDate: [],
     timeMs: {},
     runTime: function(){
             if(this.trigerStatus == "stop"){
                 clearTimeout(timeout);
-                $('time').text(this.timeMs.toString().convTime());
+                //$('time').text(this.timeMs.toString().convTime());
+                debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
+                this.ajax(this.timeMs);
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
                     Timer.timeDate[1] = new Date;
                     Timer.timeMs = Timer.timeDate[1] - Timer.timeDate[0];
-                    db.log(Timer.timeMs);
+                    debug.log(Timer.timeMs);
                     $('time').text(Timer.timeMs.toString().convTime());   
                     Timer.runTime();
                 },100);
@@ -80,6 +81,15 @@ var Timer = {
             this.down[this.initKey] = null;
         }
     },
+    ajax: function(getTime){
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }
+        xmlhttp.open("POST", "inc.php?time_ms=" + getTime, true);
+        xmlhttp.send();
+
+        return false;
+    },
     init: function(){
         $( document ).keydown(this.spaceDown.bind(this));
         $( document ).keyup(this.spaceUp.bind(this));
@@ -88,10 +98,10 @@ var Timer = {
 
 Timer.init();
 
-var db = {
-    db: 1,
+var debug = {
+    debug: 1,
     log: function(x){
-        if(this.db == 1){
+        if(this.debug == 1){
             console.log(x);
         }
     },
