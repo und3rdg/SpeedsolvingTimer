@@ -85,7 +85,7 @@ var Timer = {
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
         }
-        xmlhttp.open("POST", "inc.php?time_ms=" + getTime, true);
+        xmlhttp.open("POST", "insert.php?time_ms=" + getTime, true);
         xmlhttp.send();
 
         return false;
@@ -98,6 +98,10 @@ var Timer = {
 
 Timer.init();
 
+
+//var lastTimes = {
+    
+//}
 var debug = {
     debug: 1,
     log: function(x){

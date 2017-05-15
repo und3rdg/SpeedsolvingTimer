@@ -1,7 +1,9 @@
 <?php
-include("db.php");
-include("insert.php");
 
+// last scores to show
+$limit = 5;
 
-$conn->close();
+//db table
+$table = 'score';
+
 ?>

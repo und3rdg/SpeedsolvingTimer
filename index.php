@@ -19,13 +19,9 @@
                 00:00:00.000
             </time>
         <aside>
-            <ul>
-                <!--
-                <li>19.63</li>
-                <li>33.02</li>
-                <li>28.94</li>
-                -->
-            </ul>
+            <table id="last_times">
+                <?php include("extract.php") ?>
+            </table>
         </aside>
         <!--
         <footer>Timer in progress</footer>
