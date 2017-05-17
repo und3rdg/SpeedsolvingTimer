@@ -93,6 +93,10 @@ var Timer = {
         Timer.ajaxExtract();
     },
     ajaxExtract: function(){
+        var tableRow = "<tr><td>NO</td><td>"+ this.timeMs.toString().convTime() + "</td></tr>";
+        debug.log(tableRow);
+        $("#last_times table").prepend(tableRow);
+        /*
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -104,6 +108,7 @@ var Timer = {
         }; 
         xmlhttp.open("GET", "extract.php", true);
         xmlhttp.send();
+        */
     },
     init: function(){
         $( document ).keydown(this.spaceDown.bind(this));
