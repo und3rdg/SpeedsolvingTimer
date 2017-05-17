@@ -16,7 +16,7 @@
         <header>Speedsolving timer</header>
         -->
             <time>
-                00:00:00.000
+                00.000
             </time>
         <aside id="last_times">
             <table>
