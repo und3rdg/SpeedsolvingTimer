@@ -6,3 +6,16 @@ time{
     font-family: digital;
     font-size: 9em;
 }
+table {
+    border: solid 2px #000;
+    font-family: digital;
+    font-size: 1.3em;
+    color: #999;
+    background: #222;
+}
+body {
+    background: #444;
+}
+td {
+    border: solid 3px lightgrey;
+}
