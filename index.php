@@ -3,7 +3,8 @@
     <head>
         <title>Speedsolving timer</title>
         <meta charset="utf-8">
-        <link rel ="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="icon" href="img/speedtimer.png" />
         <script src="/js/jquery-3.2.1.min.js"></script>
         <!--
         <script src="/js/jquery-migrate-1.4.1.min.js"></script>
