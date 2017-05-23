@@ -19,8 +19,8 @@
             <time>
                 00.000
             </time>
-        <aside id="last_times">
-            <table>
+        <aside>
+            <table id="last_times">
                 <?php include("extract.php") ?>
             </table>
         </aside>

@@ -102,9 +102,10 @@ var Timer = {
         Timer.ajaxExtract();
     },
     ajaxExtract: function(){
-        var tableRow = "<tr><td>NO</td><td>"+ this.timeMs.toString().convTime() + "</td></tr>";
+        var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
+        var tableRow = "<tr><td>" + lastTimeId + "</td><td>" + this.timeMs.toString().convTime() + "</td></tr>";
         debug.log(tableRow);
-        $("#last_times table").prepend(tableRow);
+        $("#last_times").prepend(tableRow);
         /*
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
@@ -119,6 +120,7 @@ var Timer = {
         xmlhttp.send();
         */
     },
+    
     init: function(){
         $( document ).keydown(this.spaceDown.bind(this));
         $( document ).keyup(this.spaceUp.bind(this));
