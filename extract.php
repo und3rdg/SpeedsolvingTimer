@@ -20,6 +20,9 @@ function convTime($x) {
     if ($seconds <  10) {$sOut = "0" . $seconds . ".";}
     if ($seconds >= 10) {$sOut = $seconds . ".";}
     //if ($seconds <  1 ) {$sOut = "";}
+
+    if ($msec < 100) {$msec = "0" . $msec;}
+    if ($msec < 10) {$msec = "0" . $msec;}
  
     return $hOut  . $mOut . $sOut . $msec;
 }
