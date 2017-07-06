@@ -25,16 +25,25 @@ String.prototype.convTime = function () {
     return hOut  + mOut + sOut + msec;
 }
 
+window.addEventListener('keydown', function(e) {
+  if(e.keyCode == 32 && e.target == document.body) {
+    e.preventDefault();
+  }
+});
+
 var Timer = {
     iddle: function(){
+        $('html').scrollTop('0');
         $("time").css("color", "black");
         debug.log("stop time // trigerStatus = " + this.trigerStatus);
     },
     ready: function(){
+        $('html').scrollTop('0');
         $("time").css("color", "lightgreen");
         debug.log("Ready to start // trigerStatus = " + this.trigerStatus);
     },
     runing: function(){
+        $('html').scrollTop('0');
         this.timeDate[0] = new Date();
         $("time").css("color", "blue");
         this.runTime();
