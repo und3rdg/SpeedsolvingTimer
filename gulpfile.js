@@ -1,4 +1,4 @@
-//{{{ gulp require
+//{{{ GULP REQUIRE
 var gulp = require("gulp"),
        gulp         = require("gulp"),
        watch        = require("gulp-watch"),
@@ -10,7 +10,7 @@ var gulp = require("gulp"),
        uglify       = require("gulp-uglify"),
        bsync        = require("browser-sync").create();
 ///}}}
-//{{{ file destinations 
+//{{{ FILE DESTINATIONS 
 
 var dist = {
     php: "dist",
@@ -29,7 +29,7 @@ var src = {
     img: "src/img/**/*"
 }
 // }}}
-//{{{ browser sync
+//{{{ BROWSER SYNC
 gulp.task('browser-sync', function() {
     bsync.init({
         // server: {
@@ -43,7 +43,7 @@ gulp.task('browser-sync', function() {
     // gulp.watch(src.php).on('change', bsync.reload);
 });
 // }}}
-// {{{ css
+// {{{ CSS
 gulp.task('css', function() {
     return gulp.src(src.css)
         .pipe(plumber())
@@ -53,7 +53,7 @@ gulp.task('css', function() {
         .pipe(bsync.stream());
 });
 // }}}
-//{{{ javascript
+//{{{ JAVASCRIPT
 gulp.task('js', function() {
     return gulp.src(src.js)
         .pipe(uglify())
@@ -61,25 +61,25 @@ gulp.task('js', function() {
         .pipe(gulp.dest(dist.js))
 });
 //}}}
-//{{{ php
+//{{{ PHP
 gulp.task('php', function() {
     return gulp.src(src.php)
         .pipe(gulp.dest(dist.php))
 });
 //}}}
-//{{{ img
+//{{{ IMG
 gulp.task('img', function() {
     return gulp.src(src.img)
         .pipe(gulp.dest(dist.img))
 });
 //}}}
-//{{{ font
+//{{{ FONT
 gulp.task('font', function() {
     return gulp.src(src.font)
         .pipe(gulp.dest(dist.font))
 });
 //}}}
-// {{{ watch
+// {{{ WATCH
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch(src.css, ['css']);
     gulp.watch(src.js, ['js']);
