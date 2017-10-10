@@ -1,22 +1,58 @@
 @font-face
     font-family: "digital"
     src: url('/css/digital.ttf')
+$col0: #000897;
+$col1: #07092D;
+$col2: #060837;
+$col3: #0C116C;
+$col4: #0F1593;
+
+$col5: #242FFF;
+$col6: #B1B4FF;
+$col7: #848AFF;
+$col8: #000674;
+body 
+      background: $col0
+main
+    width: 100%
+    position: absolute
+header h1
+  font-size: 25px
+  span.small
+    font-size: 11px
 
 time
     font-family: digital
-    font-size: 9em
-    color: #ff0
+    font-size: 130px
+    text-align: center
+    padding-top: 120px
+    color: yellow
+    background: transparent url('/img/ssclock.png') no-repeat center center
+    display: block
+    width: 600px
+    height: 264px
+    margin: auto
+
 
 table 
-    border: solid 2px #000
+    /* border: solid 2px #000 */
+    border: solid 2px $col7
     font-family: digital
-    font-size: 1.3em
-    color: #999
-    background: #222
-
-body 
-    background: #575
+    font-size: 18px
+    color: $col6
+    /* color: #999 */
+    /* background: #222 */
+    background: $col1
 
 td 
-    border: solid 3px lightgrey
+    /* border: solid 3px lightgrey */
+    border: solid 1px $col4
+    padding: 3px
+    text-align: right
+
+section.stats
+    display: block
+    width: 600px
+    float: flex
+    margin: auto
 

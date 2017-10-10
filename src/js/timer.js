@@ -34,7 +34,7 @@ window.addEventListener('keydown', function(e) {
 var Timer = {
     iddle: function(){
         $('html').scrollTop('0');
-        $("time").css("color", "black");
+        $("time").css("color", "yellow");
         debug.log("stop time // trigerStatus = " + this.trigerStatus);
     },
     ready: function(){
