@@ -1,6 +1,5 @@
 <?php
 include("db.php");
-include("inc.php");
 
 $time_ms = intval($_GET['time_ms']);
 // mysql columns

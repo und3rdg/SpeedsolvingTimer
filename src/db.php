@@ -5,6 +5,9 @@ $username = 'root';
 $password = '';
 $dbname = 'test';
 
+//db table
+$table = 'score';
+
 $debug = 0;
 
 // Create connection

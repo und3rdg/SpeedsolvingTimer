@@ -108,7 +108,8 @@ var Timer = {
         } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
         }
-        xmlhttp.open("GET", "insert.php?time_ms=" + getTime, true);
+        // xmlhttp.open("GET", "insert.php?time_ms=" + getTime, true);
+        xmlhttp.open("GET", "ajax.php?time_ms=" + getTime, true);
         xmlhttp.send();
 
         Timer.ajaxExtract();

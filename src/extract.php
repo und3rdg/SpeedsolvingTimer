@@ -1,6 +1,5 @@
 <?php
 include("db.php");
-include("inc.php");
 
 function convTime($x) {
     $msec    = $x % 1000;
@@ -26,6 +25,9 @@ function convTime($x) {
  
     return $hOut  . $mOut . $sOut . $msec;
 }
+
+// last scores to show
+$limit = 12;
 
 $sql = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
 $result = mysqli_query($conn,$sql);
