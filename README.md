@@ -12,11 +12,9 @@ In use:
 
 ## sql table:
 
-|----|----------|-----------|
 | id | times_ms | date_time |
-|----|----------|-----------|
-|    |          |           |
-|    |          |           |
+|---|---|---|
+
 
 ## running env
 archlinux with nginx, php and mariadb(mysql)
