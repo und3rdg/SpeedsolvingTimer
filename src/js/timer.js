@@ -108,30 +108,32 @@ var Timer = {
         } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
         }
-        // xmlhttp.open("GET", "insert.php?time_ms=" + getTime, true);
         xmlhttp.open("GET", "ajax.php?time_ms=" + getTime, true);
         xmlhttp.send();
 
-        Timer.ajaxExtract();
+        Timer.ajaxShowTimes();
     },
-    ajaxExtract: function(){
+    ajaxDel: function(){
+        alert(this);
+        // if(window.XMLHttpRequest){
+        //     xmlhttp = new XMLHttpRequest();
+        // } else {
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
+        // }
+        // xmlhttp.open("GET", "ajax.php?del=" + delTimeId, true);
+    },
+    ajaxShowTimes: function(){
         var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
-        var tableRow = "<tr><td>" + lastTimeId + "</td><td>" + this.timeMs.toString().convTime() + "</td></tr>";
+        var dateTime = "";
+        var timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del" onclick="Timer.ajaxDel()">del</a>';
+
+        var tableRow = "<tr><td>" + 
+            lastTimeId + "</td><td>" + 
+            this.timeMs.toString().convTime() + "</td><td>" + 
+            dateTime + "</td><td>" +
+            timesAction + "</td></tr>";
         debug.log(tableRow);
         $("#last_times").prepend(tableRow);
-        /*
-        if(window.XMLHttpRequest){
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
-        }
-        xmlhttp.onreadystatechange = function() {
-            document.getElementById("last_times").innerHTML = this.responseText;
-            $("last_times").text(this.responseText);
-        }; 
-        xmlhttp.open("GET", "extract.php", true);
-        xmlhttp.send();
-        */
     },
     
     init: function(){

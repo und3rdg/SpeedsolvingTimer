@@ -35,14 +35,12 @@ $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($result)){
             $time = convTime($row['times_ms']);
             $date = $row['date'];
-            $plus2 = '<a href="">+2</a> ';
-            $dnf = '<a href="">DNF</a> ';
-            $del = '<a href="">del</a> ';
+            $timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del" onclick="Timer.ajaxDel()">del</a>';
             echo "<tr>
                 <td>" . $row['id'] . "</td>
                 <td>" . $time . "</td>
                 <td>" . $date . "</td>
-                <td>" . $plus2 . $dnf . $del . "</td>
+                <td>" . $timesAction . "</td>
                 </tr>";
         }
 

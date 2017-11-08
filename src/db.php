@@ -7,6 +7,7 @@ $dbname = 'test';
 
 //db table
 $table = 'score';
+// columns in table: |id|times_ms|
 
 $debug = 0;
 
