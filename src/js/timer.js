@@ -7,20 +7,20 @@ String.prototype.convTime = function () {
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-    if (hours <  10)   {hOut = "0" + hours + ":";}
-    if (hours >= 10)   {hOut = hours + ":";}
-    if (hours <  1 )   {hOut = ""}
+    if(hours <  10)   {hOut = "0" + hours + ":";}
+    if(hours >= 10)   {hOut = hours + ":";}
+    if(hours <  1 )   {hOut = ""}
 
-    if (minutes <  10) {mOut = "0" + minutes + ":";}
-    if (minutes >= 10) {mOut = minutes + ":";}
-    if (minutes <  1 ) {mOut = "";}
+    if(minutes <  10) {mOut = "0" + minutes + ":";}
+    if(minutes >= 10) {mOut = minutes + ":";}
+    if(minutes <  1 ) {mOut = "";}
    
-    if (seconds <  10) {sOut = "0" + seconds + ".";}
-    if (seconds >= 10) {sOut = seconds + ".";}
-    //if (seconds <  1 ) {sOut = "";}
+    if(seconds <  10) {sOut = "0" + seconds + ".";}
+    if(seconds >= 10) {sOut = seconds + ".";}
+    //if(seconds < 1) {sOut = "";}
 
-    if (msec < 100) {msec = "0" + msec;}
-    if (msec < 10) {msec = "0" + msec;}
+    if(msec < 100)    {msec = "0" + msec;}
+    if(msec < 10)     {msec = "0" + msec;}
  
     return hOut  + mOut + sOut + msec;
 }
@@ -58,6 +58,7 @@ var Timer = {
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
                 // this.ajaxInsert(this.timeMs);
                 Ajax.insert(this.timeMs);
+                Timer.updateTimeTable();
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
@@ -145,6 +146,7 @@ var Timer = {
     delTime: function(id){
         // delete time from db and from screen
         debug.log('delTime ' + id);    
+        Ajax.del(id);
     },
     init: function(){
         $( document ).keydown(this.spaceDown.bind(this));
@@ -162,26 +164,19 @@ var Ajax = {
         }
         xmlhttp.open("GET", "ajax.php?" + parm + "=" + val, true);
         xmlhttp.send();
-
-        Timer.updateTimeTable();
     },
-    insert: function(time){
-        this.connection('time_ms', time);
-    },
+    insert: function(time){ this.connection('time_ms', time); },
     plusTwo:'',
     dnf:'',
-    del:''
+    del:function(delId){ this.connection('del', delId) }
 }
+
 Timer.init();
 
-
-    
 var debug = {
     debug: 1,
     log: function(x){
-        if(this.debug == 1){
-            console.log(x);
-        }
+        if(this.debug == 1){ console.log(x); }
     }
 }
 
