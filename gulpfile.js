@@ -35,7 +35,8 @@ gulp.task('browser-sync', function() {
         // server: {
         //     basedir: "./"
         // },
-        proxy: "localhost:80"
+        proxy: "localhost:80",
+        browser: "firefox-developer"
     });
 
     // gulp.watch(src.css, ['css']);
