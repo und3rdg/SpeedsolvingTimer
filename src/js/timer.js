@@ -1,4 +1,4 @@
-//$(document).ready(function(){ 
+$(document).ready(function(){ 
 
 String.prototype.convTime = function () {
     var msec    = this % 1000;
@@ -56,7 +56,8 @@ var Timer = {
                 clearTimeout(timeout);
                 //$('time').text(this.timeMs.toString().convTime());
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
-                this.ajaxInsert(this.timeMs);
+                // this.ajaxInsert(this.timeMs);
+                Ajax.insert(this.timeMs);
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
@@ -102,46 +103,75 @@ var Timer = {
             this.down[this.initKey] = null;
         }
     },
-    ajaxInsert: function(getTime){
+    updateTimeTable: function(){
+        var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
+        var dateTime = "";
+        var timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del">del</a>';
+
+        var tableRow = "<tr>" +
+            "<td>" + lastTimeId + "</td>" +
+            "<td>" + this.timeMs.toString().convTime() + "</td>" +
+            "<td>" + dateTime + "</td>" +
+            "<td>" + timesAction + "</td>" +
+            "</tr>";
+        debug.log(tableRow);
+        $("#last_times").prepend(tableRow);
+        this.timeAction();
+    },
+    timeAction: function(){
+        // select id of time, and action type
+        // call function on page load and after solve to refresh it
+        $('.peanlty, .dnf, .del').click(function(e){
+            var button = $(e.target);
+            var actionType = button.text(); // +2 or DNF or DEL 
+            debug.log(actionType);
+            var StrId = $(button).parents().eq(0).siblings().eq(0).text();
+            var timeId = parseInt(StrId, 10);
+            debug.log(timeId + typeof(timeId));
+
+           if(actionType == '+2'){ Timer.plusTwoTime(timeId)}; 
+           if(actionType == 'dnf'){ Timer.dnfTime(timeId)}; 
+           if(actionType == 'del'){ Timer.delTime(timeId)}; 
+        })
+    },
+    plusTwoTime: function(id){
+        // +2 sec peanlty. update time in db on screen
+        debug.log('plusTwoTime ' + id);    
+    },
+    dnfTime: function(id){
+        // do not finish. mark in db and on screen
+        debug.log('dnfTwoTime ' + id);    
+    },
+    delTime: function(id){
+        // delete time from db and from screen
+        debug.log('delTime ' + id);    
+    },
+    init: function(){
+        $( document ).keydown(this.spaceDown.bind(this));
+        $( document ).keyup(this.spaceUp.bind(this));
+        this.timeAction();
+    }
+};
+
+var Ajax = {
+    connection:function(parm, val){
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
         } else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
         }
-        xmlhttp.open("GET", "ajax.php?time_ms=" + getTime, true);
+        xmlhttp.open("GET", "ajax.php?" + parm + "=" + val, true);
         xmlhttp.send();
 
-        Timer.ajaxShowTimes();
+        Timer.updateTimeTable();
     },
-    ajaxDel: function(){
-        alert(this);
-        // if(window.XMLHttpRequest){
-        //     xmlhttp = new XMLHttpRequest();
-        // } else {
-        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
-        // }
-        // xmlhttp.open("GET", "ajax.php?del=" + delTimeId, true);
+    insert: function(time){
+        this.connection('time_ms', time);
     },
-    ajaxShowTimes: function(){
-        var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
-        var dateTime = "";
-        var timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del" onclick="Timer.ajaxDel()">del</a>';
-
-        var tableRow = "<tr><td>" + 
-            lastTimeId + "</td><td>" + 
-            this.timeMs.toString().convTime() + "</td><td>" + 
-            dateTime + "</td><td>" +
-            timesAction + "</td></tr>";
-        debug.log(tableRow);
-        $("#last_times").prepend(tableRow);
-    },
-    
-    init: function(){
-        $( document ).keydown(this.spaceDown.bind(this));
-        $( document ).keyup(this.spaceUp.bind(this));
-    }
-};
-
+    plusTwo:'',
+    dnf:'',
+    del:''
+}
 Timer.init();
 
 
@@ -152,7 +182,7 @@ var debug = {
         if(this.debug == 1){
             console.log(x);
         }
-    },
+    }
 }
 
-//});
+});
