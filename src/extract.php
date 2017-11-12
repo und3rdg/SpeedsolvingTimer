@@ -35,7 +35,7 @@ $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($result)){
             $time = convTime($row['times_ms']);
             $date = $row['date'];
-            $timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del">del</a>';
+            $timesAction = '<span class="peanlty">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
             echo "<tr>
                 <td>" . $row['id'] . "</td>
                 <td>" . $time . "</td>
