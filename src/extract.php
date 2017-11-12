@@ -27,7 +27,7 @@ function convTime($x) {
 }
 
 // last scores to show
-$limit = 12;
+$limit = 1000;
 
 $sql = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
 $result = mysqli_query($conn,$sql);

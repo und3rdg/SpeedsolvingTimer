@@ -44,26 +44,26 @@ var Timer = {
     },
     runing: function(){
         $('html').scrollTop('0');
-        this.timeDate[0] = new Date();
+        this.timeDate[1] = new Date();
         $("time").css("color", "blue");
         this.runTime();
         debug.log("start time // trigerStatus = " + this.trigerStatus);
     },
-    timeDate: [],
+    timeDate: [(new Date()).toISOString().substring(0, 19).replace('T', ' ')
+],
     timeMs: {},
     runTime: function(){
             if(this.trigerStatus == "stop"){
                 clearTimeout(timeout);
                 //$('time').text(this.timeMs.toString().convTime());
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
-                // this.ajaxInsert(this.timeMs);
-                Ajax.insert(this.timeMs);
+                Ajax.insert(this.timeMs + '&date=' + encodeURIComponent(Timer.timeDate[0]));
                 TimeTable.updateTimeTable();
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
-                    Timer.timeDate[1] = new Date;
-                    Timer.timeMs = Timer.timeDate[1] - Timer.timeDate[0];
+                    Timer.timeDate[2] = new Date;
+                    Timer.timeMs = Timer.timeDate[2] - Timer.timeDate[1];
                     debug.log(Timer.timeMs);
                     $('time').text(Timer.timeMs.toString().convTime());   
                     Timer.runTime();
@@ -114,13 +114,12 @@ var Timer = {
 var TimeTable = {
     updateTimeTable: function(){
         var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
-        var dateTime = "";
         var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
         var tableRow = "<tr>" +
             "<td>" + lastTimeId + "</td>" +
             "<td>" + Timer.timeMs.toString().convTime() + "</td>" +
-            "<td>" + dateTime + "</td>" +
+            "<td>" + Timer.timeDate[0] + "</td>" +
             "<td>" + timesAction + "</td>" +
             "</tr>";
         debug.log(tableRow);

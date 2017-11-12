@@ -16,8 +16,18 @@
             00.000
         </time>
         <section class="stats">
-            <table id="last_times">
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>TIME</td>
+                    <td>SOLVING DATE</td>
+                    <td>UNDELETE</td>
+                </tr>
+                </thead>
+                <tbody id="last_times">
                 <?php include("extract.php") ?>
+                </tbody>
             </table>
             <table id="stats">
             
