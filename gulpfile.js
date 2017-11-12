@@ -84,6 +84,7 @@ gulp.task('font', function() {
 gulp.task('watch', ['browser-sync'], function() {
     gulp.watch(src.css, ['css']);
     gulp.watch(src.js, ['js']);
+    gulp.watch(src.js).on('change', bsync.reload);
     gulp.watch(src.php, ['php']);
     gulp.watch(src.php).on('change', bsync.reload);
     gulp.watch(src.img, ['img']);
