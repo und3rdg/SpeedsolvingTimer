@@ -107,7 +107,7 @@ var Timer = {
     updateTimeTable: function(){
         var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
         var dateTime = "";
-        var timesAction = '<a class="peanlty">+2</a> <a class="dnf">dnf</a> <a class="del">del</a>';
+        var timesAction = '<span class="peanlty">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
         var tableRow = "<tr>" +
             "<td>" + lastTimeId + "</td>" +
@@ -125,7 +125,6 @@ var Timer = {
         $('.peanlty, .dnf, .del').click(function(e){
             var button = $(e.target);
             var actionType = button.text(); // +2 or DNF or DEL 
-            debug.log(actionType);
             var StrId = $(button).parents().eq(0).siblings().eq(0).text();
             var timeId = parseInt(StrId, 10);
             debug.log(timeId + typeof(timeId));
@@ -137,10 +136,12 @@ var Timer = {
     },
     plusTwoTime: function(id){
         // +2 sec peanlty. update time in db on screen
+        Ajax.plus2(id);
         debug.log('plusTwoTime ' + id);    
     },
     dnfTime: function(id){
-        // do not finish. mark in db and on screen
+        // do not finished solve. mark in db and on screen
+        Ajax.dnf(id);
         debug.log('dnfTwoTime ' + id);    
     },
     delTime: function(id){
@@ -155,6 +156,7 @@ var Timer = {
     }
 };
 
+
 var Ajax = {
     connection:function(parm, val){
         if(window.XMLHttpRequest){
@@ -166,12 +168,12 @@ var Ajax = {
         xmlhttp.send();
     },
     insert: function(time){ this.connection('time_ms', time); },
-    plusTwo:'',
-    dnf:'',
-    del:function(delId){ this.connection('del', delId) }
+    plus2: function(Id){ this.connection('plus2', Id) },
+    dnf: function(Id){ this.connection('dnf', Id) },
+    del: function(Id){ this.connection('del', Id) }
 }
 
-Timer.init();
+
 
 var debug = {
     debug: 1,
@@ -180,4 +182,6 @@ var debug = {
     }
 }
 
+// And at the end... lets begin.
+Timer.init();
 });
