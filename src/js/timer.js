@@ -58,7 +58,7 @@ var Timer = {
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
                 // this.ajaxInsert(this.timeMs);
                 Ajax.insert(this.timeMs);
-                Timer.updateTimeTable();
+                TimeTable.updateTimeTable();
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
@@ -104,34 +104,54 @@ var Timer = {
             this.down[this.initKey] = null;
         }
     },
+    init: function(){
+        $( document ).keydown(this.spaceDown.bind(this));
+        $( document ).keyup(this.spaceUp.bind(this));
+        TimeTable.timeAction();
+    }
+};
+
+var TimeTable = {
     updateTimeTable: function(){
         var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
         var dateTime = "";
-        var timesAction = '<span class="peanlty">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
+        var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
         var tableRow = "<tr>" +
             "<td>" + lastTimeId + "</td>" +
-            "<td>" + this.timeMs.toString().convTime() + "</td>" +
+            "<td>" + Timer.timeMs.toString().convTime() + "</td>" +
             "<td>" + dateTime + "</td>" +
             "<td>" + timesAction + "</td>" +
             "</tr>";
         debug.log(tableRow);
         $("#last_times").prepend(tableRow);
-        this.timeAction();
+        TimeTable.timeAction();
     },
-    timeAction: function(){
+    timeAction:function(){ 
         // select id of time, and action type
         // call function on page load and after solve to refresh it
-        $('.peanlty, .dnf, .del').click(function(e){
+        $('.plus2, .dnf, .del').click(function(e){
             var button = $(e.target);
+            var trRow = $(button).parents().eq(1); // select line
             var actionType = button.text(); // +2 or DNF or DEL 
             var StrId = $(button).parents().eq(0).siblings().eq(0).text();
             var timeId = parseInt(StrId, 10);
             debug.log(timeId + typeof(timeId));
 
-           if(actionType == '+2'){ Timer.plusTwoTime(timeId)}; 
-           if(actionType == 'dnf'){ Timer.dnfTime(timeId)}; 
-           if(actionType == 'del'){ Timer.delTime(timeId)}; 
+            if(actionType == '+2'){
+                TimeTable.plusTwoTime(timeId);
+                $(trRow).toggleClass('trPlus2');
+            }; 
+            if(actionType == 'dnf'){
+                TimeTable.dnfTime(timeId);
+                $(trRow).toggleClass('trDnf');
+            }; 
+            if(actionType == 'del'){
+                TimeTable.delTime(timeId);
+                // $(trRow).toggleClass('trDel');
+                $(trRow).fadeOut(500);
+                debug.log(trRow);
+            }; 
         })
     },
     plusTwoTime: function(id){
@@ -149,13 +169,7 @@ var Timer = {
         debug.log('delTime ' + id);    
         Ajax.del(id);
     },
-    init: function(){
-        $( document ).keydown(this.spaceDown.bind(this));
-        $( document ).keyup(this.spaceUp.bind(this));
-        this.timeAction();
-    }
 };
-
 
 var Ajax = {
     connection:function(parm, val){
@@ -171,7 +185,7 @@ var Ajax = {
     plus2: function(Id){ this.connection('plus2', Id) },
     dnf: function(Id){ this.connection('dnf', Id) },
     del: function(Id){ this.connection('del', Id) }
-}
+};
 
 
 
