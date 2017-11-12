@@ -36,15 +36,22 @@ $result = mysqli_query($conn,$sql);
             $time = convTime($row['times_ms']);
             $date = $row['date'];
             $timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
-            echo "<tr>
-                <td>" . $row['id'] . "</td>
-                <td>" . $time . "</td>
-                <td>" . $date . "</td>
-                <td>" . $timesAction . "</td>
-                </tr>";
+
+            if($row['del']==true){
+                echo '<tr class="trDel">';
+            }elseif($row['dnf']==true){
+                echo '<tr class="trDnf">';
+            }elseif($row['plus2']==true){
+                echo '<tr class="trPlus2">';
+            }else{
+                echo '<tr>';
+            }
+            echo ' <td>' . $row['id'] . '</td>
+                   <td>' . $time . '</td>
+                   <td>' . $date . '</td>
+                   <td>' . $timesAction . '</td>
+                   </tr>';
         }
-
-
 
 
 $conn->close();
