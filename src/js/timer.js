@@ -147,9 +147,7 @@ var TimeTable = {
             }; 
             if(actionType == 'del'){
                 TimeTable.delTime(timeId);
-                // $(trRow).toggleClass('trDel');
                 $(trRow).fadeOut(500);
-                debug.log(trRow);
             }; 
         })
     },
@@ -172,13 +170,14 @@ var TimeTable = {
 
 var Ajax = {
     connection:function(parm, val){
-        if(window.XMLHttpRequest){
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
-        }
-        xmlhttp.open("GET", "ajax.php?" + parm + "=" + val, true);
-        xmlhttp.send();
+        $.ajax("ajax.php?" + parm + "=" + val);
+        // if(window.XMLHttpRequest){
+        //     xmlhttp = new XMLHttpRequest();
+        // } else {
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
+        // }
+        // xmlhttp.open("GET", "ajax.php?" + parm + "=" + val, true);
+        // xmlhttp.send();
     },
     insert: function(time){ this.connection('time_ms', time); },
     plus2: function(Id){ this.connection('plus2', Id) },
