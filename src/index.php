@@ -22,7 +22,7 @@
                     <td>ID</td>
                     <td>TIME</td>
                     <td>SOLVING DATE</td>
-                    <td>UNDELETE</td>
+                    <td class="undel">UNDELETE</td>
                 </tr>
                 </thead>
                 <tbody id="last_times">

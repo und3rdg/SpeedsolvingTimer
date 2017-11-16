@@ -129,7 +129,7 @@ var TimeTable = {
     timeAction:function(){ 
         // select id of time, and action type
         // call function on page load and after solve to refresh it
-        $('.plus2, .dnf, .del').click(function(e){
+        $('.plus2, .dnf, .dell, .undel').click(function(e){
             var button = $(e.target);
             var trRow = $(button).parents().eq(1); // select line
             var actionType = button.text(); // +2 or DNF or DEL 
@@ -149,6 +149,9 @@ var TimeTable = {
                 TimeTable.delTime(timeId);
                 $(trRow).fadeOut(500);
             }; 
+            if(actionType == 'undelete'){
+            console.log('undelete clicked', actionType);
+            }
         })
     },
     plusTwoTime: function(id){
