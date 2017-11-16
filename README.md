@@ -13,7 +13,7 @@ In use:
 ## sql table:
 
 |id |times_ms|date|plus2|dnf|del|
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 |AUTOINC|INT(10)|DATETIME|BOOL|BOOL|BOOL|
 
 
