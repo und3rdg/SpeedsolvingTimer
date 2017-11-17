@@ -48,6 +48,7 @@ gulp.task('css', function() {
         .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(sass().on('error',sass.logError))
+            .pipe(autoPrefixer())
             .pipe(cleanCSS())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(dist.css))
