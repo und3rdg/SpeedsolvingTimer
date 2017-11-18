@@ -125,6 +125,7 @@ var TimeTable = {
         });
         TimeTable.timeAction(); 
     },
+    //render table
     render: function(id, time, date, cls){
         var action = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
         $('#last_times').prepend('<tr class=' + cls + '>' +
@@ -134,11 +135,25 @@ var TimeTable = {
                 '<td>' + action + '</td></tr>'
         )
     },
+    // adding new time to table
     update: function(){
         var timeId = parseInt($('#last_times td:first').text(), 10) + 1;
         var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
         TimeTable.render(timeId, Timer.timeMs, Timer.timeDate[0]);
+        
+        // add new time to old array
+        arrPush = {
+            id:timeId, 
+            times_ms:Timer.timeMs, 
+            date:Timer.timeDate[0],
+            plus2:0, 
+            dnf:0, 
+            del:0
+        }
+        tableArray.push(arrPush)
+        
+        // refresh new action buttons
         TimeTable.timeAction();
     },
     timeAction:function(){ 
