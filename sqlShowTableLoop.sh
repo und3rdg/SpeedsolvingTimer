@@ -3,6 +3,6 @@
 while :
     do
         mysql -e "USE test; SELECT * FROM score;"
-        sleep 1
+        sleep 0.5
     done
 
