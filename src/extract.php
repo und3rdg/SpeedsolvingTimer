@@ -31,27 +31,11 @@ $limit = 1000;
 
 $sql = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
 $result = mysqli_query($conn,$sql);
-
+echo "[ \n";
         while($row = mysqli_fetch_array($result)){
-            $time = convTime($row['times_ms']);
-            $date = $row['date'];
-            $timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
-
-            if($row['del']==true){
-                echo '<tr class="trDel">';
-            }elseif($row['dnf']==true){
-                echo '<tr class="trDnf">';
-            }elseif($row['plus2']==true){
-                echo '<tr class="trPlus2">';
-            }else{
-                echo '<tr>';
-            }
-            echo ' <td>' . $row['id'] . '</td>
-                   <td>' . $time . '</td>
-                   <td>' . $date . '</td>
-                   <td>' . $timesAction . '</td>
-                   </tr>';
+            echo json_encode($row) . ", \n";
         }
+echo ']';
 
 
 $conn->close();

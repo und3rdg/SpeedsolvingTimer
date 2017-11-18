@@ -32,6 +32,12 @@ window.addEventListener('keydown', function(e) {
 });
 
 var Timer = {
+    init: function(){
+        // starting from here
+        $( document ).keydown(this.spaceDown.bind(this));
+        $( document ).keyup(this.spaceUp.bind(this));
+        TimeTable.init();
+    },
     iddle: function(){
         $('html').scrollTop('0');
         $("time").css("color", "yellow");
@@ -55,10 +61,9 @@ var Timer = {
     runTime: function(){
             if(this.trigerStatus == "stop"){
                 clearTimeout(timeout);
-                //$('time').text(this.timeMs.toString().convTime());
                 debug.log("stop time // trigerStatus = " + this.trigerStatus + " (" + this.timeMs +")");
                 Ajax.insert(this.timeMs + '&date=' + encodeURIComponent(Timer.timeDate[0]));
-                TimeTable.updateTimeTable();
+                TimeTable.update();
             }
             if(this.trigerStatus == "running"){
                 var timeout = setTimeout(function(){
@@ -103,32 +108,42 @@ var Timer = {
             } 
             this.down[this.initKey] = null;
         }
-    },
-    init: function(){
-        $( document ).keydown(this.spaceDown.bind(this));
-        $( document ).keyup(this.spaceUp.bind(this));
-        TimeTable.timeAction();
     }
 };
 
 var TimeTable = {
-    updateTimeTable: function(){
-        var lastTimeId = parseInt($('#last_times td:first').text(), 10) + 1;
+    init: function(){
+    // tableArray json from mysql:
+    // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
+    // plus2:"BOOL", dnf:"BOOL", del:"BOOL"
+        tableArray.reverse().map(function(arr){
+            if(arr.plus2 == true){ var cls = 'trPlus2'};
+            if(arr.dnf == true){ var cls = 'trDnf'};
+            if(arr.del == true){ var cls = 'trDel'};
+
+            return TimeTable.render(arr.id, arr.times_ms, arr.date, cls)
+        });
+        TimeTable.timeAction(); 
+    },
+    render: function(id, time, date, cls){
+        var action = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
+        $('#last_times').prepend('<tr class=' + cls + '>' +
+                '<td>' + id + '</td>' +
+                '<td>' + time.toString().convTime() + '</td>' +
+                '<td>' + date + '</td>' +
+                '<td>' + action + '</td></tr>'
+        )
+    },
+    update: function(){
+        var timeId = parseInt($('#last_times td:first').text(), 10) + 1;
         var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
-        var tableRow = "<tr>" +
-            "<td>" + lastTimeId + "</td>" +
-            "<td>" + Timer.timeMs.toString().convTime() + "</td>" +
-            "<td>" + Timer.timeDate[0] + "</td>" +
-            "<td>" + timesAction + "</td>" +
-            "</tr>";
-        debug.log(tableRow);
-        $("#last_times").prepend(tableRow);
+        TimeTable.render(timeId, Timer.timeMs, Timer.timeDate[0]);
         TimeTable.timeAction();
     },
     timeAction:function(){ 
         // select id of time, and action type
-        // call function on page load and after solve to refresh it
+        // call function on page load and after solve (to refresh it)
         $('.plus2, .dnf, .del, .undel').click(function(){
             var button = $(this); //$(e.target);
             var trRow = $(button).parents().eq(1); // line
