@@ -129,44 +129,44 @@ var TimeTable = {
     timeAction:function(){ 
         // select id of time, and action type
         // call function on page load and after solve to refresh it
-        $('.plus2, .dnf, .dell, .undel').click(function(e){
-            var button = $(e.target);
-            var trRow = $(button).parents().eq(1); // select line
-            var actionType = button.text(); // +2 or DNF or DEL 
+        $('.plus2, .dnf, .del, .undel').click(function(){
+            var button = $(this); //$(e.target);
+            var trRow = $(button).parents().eq(1); // line
+            var actionClass = button.attr('class'); // +2 or DNF or DEL 
+            debug.log('actionClass: ' + actionClass);
+
             var StrId = $(button).parents().eq(0).siblings().eq(0).text();
             var timeId = parseInt(StrId, 10);
             debug.log(timeId + typeof(timeId));
 
-            if(actionType == '+2'){
+            if(actionClass == 'plus2'){
                 TimeTable.plusTwoTime(timeId);
                 $(trRow).toggleClass('trPlus2');
             }; 
-            if(actionType == 'dnf'){
+            if(actionClass == 'dnf'){
                 TimeTable.dnfTime(timeId);
                 $(trRow).toggleClass('trDnf');
             }; 
-            if(actionType == 'del'){
+            if(actionClass == 'del'){
                 TimeTable.delTime(timeId);
+                $(trRow).toggleClass('trDel');
                 $(trRow).fadeOut(500);
             }; 
-            if(actionType == 'undelete'){
-            console.log('undelete clicked', actionType);
+            if(actionClass == 'undel'){
+                debug.log('undelete clicked', actionClass);
             }
         })
     },
     plusTwoTime: function(id){
         // +2 sec peanlty. update time in db on screen
         Ajax.plus2(id);
-        debug.log('plusTwoTime ' + id);    
     },
     dnfTime: function(id){
         // do not finished solve. mark in db and on screen
         Ajax.dnf(id);
-        debug.log('dnfTwoTime ' + id);    
     },
     delTime: function(id){
-        // delete time from db and from screen
-        debug.log('delTime ' + id);    
+        // remove(hide) time from screen and mark del in db
         Ajax.del(id);
     },
 };
@@ -174,13 +174,6 @@ var TimeTable = {
 var Ajax = {
     connection:function(parm, val){
         $.ajax("ajax.php?" + parm + "=" + val);
-        // if(window.XMLHttpRequest){
-        //     xmlhttp = new XMLHttpRequest();
-        // } else {
-        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // m$ #$%#@
-        // }
-        // xmlhttp.open("GET", "ajax.php?" + parm + "=" + val, true);
-        // xmlhttp.send();
     },
     insert: function(time){ this.connection('time_ms', time); },
     plus2: function(Id){ this.connection('plus2', Id) },
