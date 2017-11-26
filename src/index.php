@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="img/speedtimer.png" />
     <script>
-    var tableArray = <?php include("extract.php") ?>
+    /* var tableArray = <?php include("extract.php") ?> */
     </script>
     <script src="/js/all.min.js"></script>
 </head>

@@ -116,6 +116,7 @@ var TimeTable = {
     // tableArray json from mysql:
     // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
     // plus2:"BOOL", dnf:"BOOL", del:"BOOL"
+        tableArray = $.ajax("extract.php");
         tableArray.reverse().map(function(arr){
             if(arr.plus2 == true){ var cls = 'trPlus2'};
             if(arr.dnf == true){ var cls = 'trDnf'};
@@ -205,6 +206,9 @@ var Ajax = {
     connection:function(parm, val){
         $.ajax("ajax.php?" + parm + "=" + val);
     },
+    extract: 
+        $.ajax("extract.php");
+    ,
     insert: function(time){ this.connection('time_ms', time); },
     plus2: function(Id){ this.connection('plus2', Id) },
     dnf: function(Id){ this.connection('dnf', Id) },
