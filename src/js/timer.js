@@ -116,6 +116,8 @@ var TimeTable = {
     // tableArray json from mysql:
     // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
     // plus2:"BOOL", dnf:"BOOL", del:"BOOL"
+        tableArray = TimeTable.tableArray;
+        debug.log(tableArray);
         tableArray.reverse().map(function(arr){
             if(arr.plus2 == true){ var cls = 'trPlus2'};
             if(arr.dnf == true){ var cls = 'trDnf'};
@@ -125,6 +127,8 @@ var TimeTable = {
         });
         TimeTable.timeAction(); 
     },
+    tableArray: [],
+    //render table
     render: function(id, time, date, cls){
         var action = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
         $('#last_times').prepend('<tr class=' + cls + '>' +
@@ -134,11 +138,25 @@ var TimeTable = {
                 '<td>' + action + '</td></tr>'
         )
     },
+    // adding new time to table
     update: function(){
         var timeId = parseInt($('#last_times td:first').text(), 10) + 1;
         var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
         TimeTable.render(timeId, Timer.timeMs, Timer.timeDate[0]);
+        
+        // add new time to old array
+        arrPush = {
+            id:timeId, 
+            times_ms:Timer.timeMs, 
+            date:Timer.timeDate[0],
+            plus2:0, 
+            dnf:0, 
+            del:0
+        }
+        tableArray.push(arrPush)
+        
+        // refresh new action buttons
         TimeTable.timeAction();
     },
     timeAction:function(){ 
@@ -190,6 +208,12 @@ var Ajax = {
     connection:function(parm, val){
         $.ajax("ajax.php?" + parm + "=" + val);
     },
+    init: function(){
+        $.getJSON( "extract.php", function(data){ 
+            TimeTable.tableArray = data;
+            Timer.init();
+        })
+    },
     insert: function(time){ this.connection('time_ms', time); },
     plus2: function(Id){ this.connection('plus2', Id) },
     dnf: function(Id){ this.connection('dnf', Id) },
@@ -206,5 +230,5 @@ var debug = {
 }
 
 // And at the end... lets begin.
-Timer.init();
+        Ajax.init();
 });

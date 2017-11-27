@@ -31,12 +31,11 @@ $limit = 1000;
 
 $sql = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
 $result = mysqli_query($conn,$sql);
-echo "[ \n";
-        while($row = mysqli_fetch_array($result)){
-            echo json_encode($row) . ", \n";
-        }
-echo ']';
-
+$arr = array();
+while($row = mysqli_fetch_assoc($result)){
+    $arr[] = $row;
+}
+echo json_encode($arr);
 
 $conn->close();
 ?>
