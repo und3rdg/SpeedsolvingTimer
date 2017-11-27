@@ -18,5 +18,8 @@ In use:
 
 
 
-## my env
+## local dev env
 archlinux with nginx, php and mariadb(mysql)
+
+## public addres
+http://sstimer.tk
