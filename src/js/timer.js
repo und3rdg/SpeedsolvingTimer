@@ -187,6 +187,7 @@ var TimeTable = {
             }; 
             if(actionClass == 'undel'){
                 debug.log('undelete clicked', actionClass);
+                $('.last_times tr').toggle();
             }
         })
     },
