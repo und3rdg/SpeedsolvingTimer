@@ -2,6 +2,10 @@
 *~
 *.swp
 *.swo
+# Session.vim
+*.vim
+# YCM
+.tern-project
 
 # node
 dist/
