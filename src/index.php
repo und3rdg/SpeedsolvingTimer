@@ -29,7 +29,55 @@
                 </tbody>
             </table>
             <table id="stats">
-            
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td colspan=2>BEST</td>
+                        <td>CURRENT</td>
+                    </tr>
+                    <tr>
+                        <td>TOP1</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Mo3</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Ao5</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Ao12</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Mo50</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Mo100</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                    <tr>
+                        <td>Mo1000</td>
+                        <td>20.123</td>
+                        <td>2017-11-26 15:02:50</td>
+                        <td>30.123</td>
+                    </tr>
+                </tbody>
             </table>
         </section>
         <!--
