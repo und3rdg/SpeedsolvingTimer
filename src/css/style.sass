@@ -1,6 +1,3 @@
-@font-face
-    font-family: "digital"
-    src: url('/font/digitalMono.ttf')
 $col0: #000897;
 $col1: #07092D;
 $col2: #060837;
@@ -16,44 +13,48 @@ $colPlus2: orange
 $colDel: red
 $colDnf: grey
 
+@font-face
+  font-family: "digital"
+  src: url('/font/digitalMono.ttf')
+
 body 
-      background: $col0
+  background: $col0
 main
-    width: 100%
-    position: absolute
+  width: 100%
+  position: absolute
 header h1
   font-size: 25px
   span.small
     font-size: 11px
 
 time
-    font-family: digital
-    font-size: 130px
-    text-align: center
-    padding-top: 120px
-    color: yellow
-    background: transparent url('/img/ssclock.png') no-repeat center center
-    display: block
-    width: 600px
-    height: 264px
-    margin: auto
+  font-family: digital
+  font-size: 130px
+  text-align: center
+  padding-top: 120px
+  color: yellow
+  background: transparent url('/img/ssclock.png') no-repeat center center
+  display: block
+  width: 600px
+  height: 264px
+  margin: auto
 
 
 table 
-    /* border: solid 2px #000 */
-    border: solid 2px $col7
-    font-family: digital
-    font-size: 18px
-    color: $col6
-    /* color: #999 */
-    /* background: #222 */
-    background: $col1
+  /* border: solid 2px #000 */
+  border: solid 2px $col7
+  font-family: digital
+  font-size: 18px
+  color: $col6
+  /* color: #999 */
+  /* background: #222 */
+  background: $col1
 
 td 
-    /* border: solid 3px lightgrey */
-    border: solid 1px $col4
-    padding: 3px
-    text-align: right
+  /* border: solid 3px lightgrey */
+  border: solid 1px $col4
+  padding: 3px
+  text-align: right
 
 .plus2, .dnf, .del, .undel
   cursor: pointer
@@ -72,8 +73,8 @@ td
   color: $colDel
 
 section.stats
-    display: block
-    width: 600px
-    float: flex
-    margin: auto
+  display: block
+  width: 600px
+  float: flex
+  margin: auto
 

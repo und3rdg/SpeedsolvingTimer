@@ -15,9 +15,9 @@ $debug = 0;
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    echo "<footer>";
-    die("Connection failed: " . $conn->connect_error);
-    echo "</footer>";
+  echo "<footer>";
+  die("Connection failed: " . $conn->connect_error);
+  echo "</footer>";
 }
 if($debug == true) {
 echo $conn -> host_info;
