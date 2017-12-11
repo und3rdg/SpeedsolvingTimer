@@ -3,9 +3,8 @@
 <head>
   <title>Speedsolving timer</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="img/speedtimer.png" />
-  <script src="/js/all.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/img/speedtimer.png" />
 </head>
 <body>
   <main>
@@ -16,7 +15,7 @@
     00.000
   </time>
   <section class="stats">
-    <table>
+    <table id="last_times">
       <thead>
         <tr>
           <td>ID</td>
@@ -25,57 +24,59 @@
           <td class="undel">UNDELETE</td>
         </tr>
       </thead>
-      <tbody id="last_times">
+      <tbody>
       </tbody>
     </table>
     <table id="stats">
-      <tbody>
+      <thead>
         <tr>
           <td></td>
           <td colspan=2>BEST</td>
           <td>CURRENT</td>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td>TOP1</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Mo3</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Ao5</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Ao12</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Mo50</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Mo100</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
         <tr>
           <td>Mo1000</td>
-          <td>20.123</td>
-          <td>2017-11-26 15:02:50</td>
-          <td>30.123</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
       </tbody>
     </table>
@@ -84,5 +85,6 @@
     <footer>Timer in progress</footer>
   -->
   </main>
+  <script src="/js/main.js"></script>
 </body>
 </html>

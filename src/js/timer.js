@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+// $(document).ready(function(){ 
 
 String.prototype.convTime = function () {
   var msec  = this % 1000;
@@ -131,7 +131,7 @@ var TimeTable = {
   //render table
   render: function(id, time, date, cls){
     var action = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
-    $('#last_times').prepend(
+    $('#last_times tbody').prepend(
       '<tr class=' + cls + '>' +
       '<td>' + id + '</td>' +
       '<td>' + time.toString().convTime() + '</td>' +
@@ -141,7 +141,7 @@ var TimeTable = {
   },
   // adding new time to table
   update: function(){
-    var timeId = parseInt($('#last_times td:first').text(), 10) + 1;
+    var timeId = parseInt($('#last_times tbody td:first').text(), 10) + 1;
     var timesAction = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
 
     TimeTable.render(timeId, Timer.timeMs, Timer.timeDate[0]);
@@ -173,40 +173,34 @@ var TimeTable = {
       var timeId = parseInt(StrId, 10);
       debug.log(timeId + typeof(timeId));
 
+      // +2 sec peanlty. update time in db on screen
       if(actionClass == 'plus2'){
-        TimeTable.plusTwoTime(timeId);
+        Ajax.plus2(timeId);
         $(trRow).toggleClass('trPlus2');
       }; 
+
+      // do not finished solve. mark in db and on screen
       if(actionClass == 'dnf'){
-        TimeTable.dnfTime(timeId);
+        Ajax.dnf(id);
         $(trRow).toggleClass('trDnf');
       }; 
+
+      // remove(hide) time from screen and mark del in db
       if(actionClass == 'del'){
-        TimeTable.delTime(timeId);
+        Ajax.del(id);
         $(trRow).toggleClass('trDel');
         $(trRow).fadeOut(500);
       }; 
+      
       if(actionClass == 'undel'){
         debug.log('undelete clicked', actionClass);
         // BUG:
         // working every second solve,
         // if open adding new time to delete table(only on front-end, db/and json looks ok)
-        $('#last_times tr').toggle();
+        $('#last_times tbody tr').toggle();
       }
     })
-  },
-  plusTwoTime: function(id){
-    // +2 sec peanlty. update time in db on screen
-    Ajax.plus2(id);
-  },
-  dnfTime: function(id){
-    // do not finished solve. mark in db and on screen
-    Ajax.dnf(id);
-  },
-  delTime: function(id){
-    // remove(hide) time from screen and mark del in db
-    Ajax.del(id);
-  },
+  }
 };
 
 var Ajax = {
@@ -228,7 +222,7 @@ var Ajax = {
 
 
 var debug = {
-  debug: 1,
+  debug: 0,
   log: function(x){
     if(this.debug == 1){ console.log(x); }
   }
@@ -236,4 +230,4 @@ var debug = {
 
 // And at the end... lets begin.
     Ajax.init();
-});
+// });
