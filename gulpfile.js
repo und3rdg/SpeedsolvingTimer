@@ -40,7 +40,8 @@ gulp.task('browser-sync', function() {
     //     basedir: "./"
     // },
     proxy: "localhost:80",
-    browser: "firefox-developer"
+    // browser: "firefox-developer"
+    browser: "chromium"
   })
 
 })
