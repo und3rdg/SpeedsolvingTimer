@@ -10,6 +10,7 @@ var gulp = require("gulp"),
   concat         = require("gulp-concat"),
   uglify         = require("gulp-uglify"),
   sourcemaps     = require("gulp-sourcemaps"), 
+  mocha          = require("gulp-mocha"),
   bsync          = require("browser-sync").create()
 
 // FILE DESTINATIONS
@@ -31,6 +32,7 @@ var src = {
     "src/js/timer.js",
     "src/js/ao.js"
   ],
+  test: "test/aoTest.js",
   img: "src/img/**/*"
 }
 // BROWSER SYNC
@@ -70,6 +72,12 @@ gulp.task('js', function() {
     .pipe(gulp.dest(dist.js))
 })
 
+// MOCHA TEST
+gulp.task('testMocha', function(){
+  return gulp.src(src.test)
+    .pipe(mocha())
+})
+
 // PHP
 gulp.task('php', function() {
   return gulp.src(src.php)
@@ -91,7 +99,7 @@ gulp.task('font', function() {
 // WATCH
 gulp.task('watch', ['browser-sync'], function() {
   gulp.watch(src.css, ['css'])
-  gulp.watch(src.js, ['js'])
+  gulp.watch(src.js, ['js', 'testMocha'])
   gulp.watch(src.js).on('change', bsync.reload)
   gulp.watch(src.php, ['php'])
   gulp.watch(src.php).on('change', bsync.reload)

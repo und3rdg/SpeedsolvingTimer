@@ -7,7 +7,7 @@
     "url": "https://github.com/und3rdg@gmail.com/sstimer.git"
   },
   "scripts": {
-    "test": "mocha -w --reporter mocha-clearscreen-reporter || true"
+    "test": "mocha -w --reporter spec || true"
   },
   "version": "0.0.1",
   "dependencies": {

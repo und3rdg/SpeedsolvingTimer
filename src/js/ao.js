@@ -31,7 +31,7 @@ var arr = [
 // +2 peantly 2s
 function plus2(row){
  if(row.plus2 == 1){
-    row.times_ms += 2000
+    row.times_ms += 200x
   }
   return row
 }

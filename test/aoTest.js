@@ -98,6 +98,12 @@ describe('FILTERING TABLE:', () => {
     it('should not by empty', ()=>{
       assert.isNotEmpty(result)
     })
+    it('should have more than 3 items or something')
+    it('should have more than 5 items or something')
+    it('should have more than 14 items or something')
+    it('should have more than 50 items or something')
+    it('should have more than 100 items or something')
+    it('should have more than 1000 items or something')
   })
 })
 
