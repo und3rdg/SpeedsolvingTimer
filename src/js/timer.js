@@ -181,13 +181,13 @@ var TimeTable = {
 
       // do not finished solve. mark in db and on screen
       if(actionClass == 'dnf'){
-        Ajax.dnf(id);
+        Ajax.dnf(timeId);
         $(trRow).toggleClass('trDnf');
       }; 
 
       // remove(hide) time from screen and mark del in db
       if(actionClass == 'del'){
-        Ajax.del(id);
+        Ajax.del(timeId);
         $(trRow).toggleClass('trDel');
         $(trRow).fadeOut(500);
       }; 
