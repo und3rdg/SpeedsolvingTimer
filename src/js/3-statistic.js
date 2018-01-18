@@ -1,5 +1,3 @@
-var exports = module.exports = {}
-
 var arr = [
   {id:  0, times_ms:   1, date: 'date', plus2: 1, dnf: 1, del: 0},
   {id:  1, times_ms:  10, date: 'date', plus2: 0, dnf: 1, del: 0},
@@ -35,7 +33,6 @@ function plus2(row){
   }
   return row
 }
-exports.plus2 = plus2
 
 // do not finish, solving time is infinity
 function dnf(row){
@@ -44,13 +41,11 @@ function dnf(row){
   }
   return row
 }
-exports.dnf = dnf
 
 // filter deleted times
 function del(row){
   return row.del == 0
 }
-exports.del = del
 
 // Final filtering array
 function fArr(arr){
@@ -59,7 +54,6 @@ function fArr(arr){
   map(dnf).
   filter(del)
 }
-exports.fArr = fArr 
     
 // Ao(n) remove best and worst time form array
 function bestWorstId(arr){
@@ -75,7 +69,6 @@ function bestWorstId(arr){
   }
   return {best: bestId, worst: worstId}
 }
-exports.bestWorstId = bestWorstId
 
 function removeBestWorstArr(arr){
   return arr.
@@ -86,7 +79,6 @@ function removeBestWorstArr(arr){
     return row.id !== bestWorstId(arr).worst
   }) 
 }
-exports.removeBestWorstArr = removeBestWorstArr
 
 // get array of only x times
 // if Ao5 Ao12 remove best & worst
@@ -102,7 +94,6 @@ function aoArr(arr, ao){
   }
   return aoArr
 }
-exports.aoArr = aoArr
 
 // averange
 function averange(arr){
@@ -111,7 +102,16 @@ function averange(arr){
   },0)  
   return (sum / arr.length)
 }
+// start-test
+exports.plus2 = plus2
+exports.dnf = dnf
+exports.del = del
+exports.fArr = fArr 
+exports.bestWorstId = bestWorstId
+exports.removeBestWorstArr = removeBestWorstArr
+exports.aoArr = aoArr
 exports.averange = averange
+// end-test
 
 
 

@@ -1,5 +1,3 @@
-// $(document).ready(function(){ 
-
 String.prototype.convTime = function () {
   var msec  = this % 1000;
   var sec_num = Math.floor(this / 1000);
@@ -164,7 +162,7 @@ var TimeTable = {
     // select id of time, and action type
     // call function on page load and after solve (to refresh it)
     $('.plus2, .dnf, .del, .undel').click(function(){
-      var button = $(this); //$(e.target);
+      var button = $(this);
       var trRow = $(button).parents().eq(1); // line
       var actionClass = button.attr('class'); // +2 or DNF or DEL 
       debug.log('actionClass: ' + actionClass);
@@ -198,6 +196,7 @@ var TimeTable = {
         // working every second solve,
         // if open adding new time to delete table(only on front-end, db/and json looks ok)
         $('#last_times tbody tr').toggle();
+        debug.log("undelete clicked")
       }
     })
   }
@@ -230,4 +229,3 @@ var debug = {
 
 // And at the end... lets begin.
     Ajax.init();
-// });

@@ -11,6 +11,7 @@ var gulp = require("gulp"),
   uglify         = require("gulp-uglify"),
   sourcemaps     = require("gulp-sourcemaps"), 
   mocha          = require("gulp-mocha"),
+  stripCode      = require("gulp-strip-code"),
   bsync          = require("browser-sync").create()
 
 // FILE DESTINATIONS
@@ -29,10 +30,15 @@ var src = {
   font:"src/font/**/*.ttf",
   js: [
     "src/js/lib/jquery-3.2.1.js",
-    "src/js/timer.js",
-    "src/js/ao.js"
+    "src/js/1-start.js",
+    "src/js/2-timer.js",
+    "src/js/3-statistic.js",
+    "src/js/99-end.js"
   ],
-  test: "test/aoTest.js",
+  test: [
+    // "test/2-timerTest.js",
+    "test/3-statisticTest.js"
+  ],
   img: "src/img/**/*"
 }
 // BROWSER SYNC
@@ -42,7 +48,7 @@ gulp.task('browser-sync', function() {
     //     basedir: "./"
     // },
     proxy: "localhost:80",
-    // browser: "firefox-developer"
+    open: false,
     browser: "chromium"
   })
 
@@ -66,6 +72,10 @@ gulp.task('js', function() {
   return gulp.src(src.js)
     .pipe(sourcemaps.init())
     .pipe(plumber())
+      .pipe(stripCode({
+        // unfortunately does not support sourcemap, try use it at the end of file
+        pattern: RegExp("([\\t ]*\\/\\/ ?" + "start-test" + " ?)[\\s\\S]*?(\\/\\/ ?" + "end-test" + " ?[\\t ]*\\n?)", "g")
+      }))
       .pipe(uglify())
       .pipe(concat('main.js'))
     .pipe(sourcemaps.write())
@@ -97,7 +107,7 @@ gulp.task('font', function() {
 })
 
 // WATCH
-gulp.task('watch', ['browser-sync'], function() {
+gulp.task('watch', ['browser-sync', 'testMocha'], function() {
   gulp.watch(src.css, ['css'])
   gulp.watch(src.js, ['js', 'testMocha'])
   gulp.watch(src.js).on('change', bsync.reload)

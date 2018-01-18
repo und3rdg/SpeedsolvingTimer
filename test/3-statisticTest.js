@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-const app = require('./../src/js/ao')
+const app = require('./../src/js/3-statistic.js')
 
 
 describe('FILTERING TABLE:', () => {
