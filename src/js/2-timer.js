@@ -124,6 +124,12 @@ var TimeTable = {
       return TimeTable.render(arr.id, arr.times_ms, arr.date, cls)
     });
     TimeTable.timeAction(); 
+
+    $('.undel').on('click', function(){
+        $('#last_times tbody tr').toggle();
+      })
+    // still need work, flip table back on start timer and move it from here
+
   },
   tableArray: [],
   //render table
@@ -136,7 +142,7 @@ var TimeTable = {
       '<td>' + date + '</td>' +
       '<td>' + action + '</td></tr>'
     )
-  },
+  },  
   // adding new time to table
   update: function(){
     var timeId = parseInt($('#last_times tbody td:first').text(), 10) + 1;
@@ -161,7 +167,7 @@ var TimeTable = {
   timeAction:function(){ 
     // select id of time, and action type
     // call function on page load and after solve (to refresh it)
-    $('.plus2, .dnf, .del, .undel').click(function(){
+    $('.plus2, .dnf, .del').on('click', function(){
       var button = $(this);
       var trRow = $(button).parents().eq(1); // line
       var actionClass = button.attr('class'); // +2 or DNF or DEL 
@@ -189,15 +195,6 @@ var TimeTable = {
         $(trRow).toggleClass('trDel');
         $(trRow).fadeOut(500);
       }; 
-      
-      if(actionClass == 'undel'){
-        debug.log('undelete clicked', actionClass);
-        // BUG:
-        // working every second solve,
-        // if open adding new time to delete table(only on front-end, db/and json looks ok)
-        $('#last_times tbody tr').toggle();
-        debug.log("undelete clicked")
-      }
     })
   }
 };
