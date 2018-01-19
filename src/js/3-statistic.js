@@ -1,29 +1,3 @@
-var arr = [
-  {id:  0, times_ms:   1, date: 'date', plus2: 1, dnf: 1, del: 0},
-  {id:  1, times_ms:  10, date: 'date', plus2: 0, dnf: 1, del: 0},
-  {id:  2, times_ms:  20, date: 'date', plus2: 0, dnf: 0, del: 1},
-  {id:  3, times_ms:  30, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id:  4, times_ms:  40, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id:  5, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id:  6, times_ms:  60, date: 'date', plus2: 0, dnf: 1, del: 0},
-  {id:  7, times_ms:  70, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id:  8, times_ms:  80, date: 'date', plus2: 0, dnf: 1, del: 0},
-  {id:  9, times_ms:  90, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 10, times_ms: 100, date: 'date', plus2: 1, dnf: 1, del: 0},
-  {id: 11, times_ms: 110, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 12, times_ms: 120, date: 'date', plus2: 0, dnf: 1, del: 1},
-  {id: 13, times_ms: 130, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 14, times_ms: 140, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 15, times_ms: 150, date: 'date', plus2: 1, dnf: 1, del: 0},
-  {id: 16, times_ms: 160, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 17, times_ms: 170, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 18, times_ms: 180, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 19, times_ms: 190, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 20, times_ms: 200, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 21, times_ms: 210, date: 'date', plus2: 0, dnf: 0, del: 0},
-  {id: 22, times_ms: 220, date: 'date', plus2: 0, dnf: 0, del: 0}
-]
-
 // FILTERING ARRAY
 
 // +2 peantly 2s
