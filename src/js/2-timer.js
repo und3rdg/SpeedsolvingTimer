@@ -216,13 +216,5 @@ var Ajax = {
 };
 
 
-
-var debug = {
-  debug: 0,
-  log: function(x){
-    if(this.debug == 1){ console.log(x); }
-  }
-}
-
 // And at the end... lets begin.
     Ajax.init();

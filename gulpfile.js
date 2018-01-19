@@ -71,12 +71,12 @@ gulp.task('css', function() {
 gulp.task('js', function() {
   return gulp.src(src.js)
     .pipe(sourcemaps.init())
-    .pipe(plumber())
       .pipe(stripCode({
         // unfortunately does not support sourcemap, try use it at the end of file
         pattern: RegExp("([\\t ]*\\/\\/ ?" + "start-test" + " ?)[\\s\\S]*?(\\/\\/ ?" + "end-test" + " ?[\\t ]*\\n?)", "g")
       }))
-      .pipe(uglify())
+    .pipe(plumber())
+      // .pipe(uglify())
       .pipe(concat('main.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dist.js))
