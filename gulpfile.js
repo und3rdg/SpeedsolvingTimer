@@ -1,3 +1,8 @@
+console.log(`
+##################
+#   start gulp   #
+##################
+`)
 // GULP REQUIRE
 var gulp = require("gulp"),
   gulp           = require("gulp"),
@@ -83,12 +88,6 @@ gulp.task('js', function() {
     .pipe(gulp.dest(dist.js))
 })
 
-// MOCHA TEST
-gulp.task('testMocha', function(){
-  return gulp.src(src.test)
-    .pipe(mocha())
-})
-
 // PHP
 gulp.task('php', function() {
   return gulp.src(src.php)
@@ -107,17 +106,26 @@ gulp.task('font', function() {
     .pipe(gulp.dest(dist.font))
 })
 
+// MOCHA TEST
+gulp.task('testMocha', function(){
+console.log(`
+         ##################
+         #   MOCHA TASK   #
+         ##################
+`)
+  return gulp.src(src.test)
+    .pipe(mocha())
+})
+
 // WATCH
-gulp.task('watch', ['browser-sync', 'testMocha'], function() {
+gulp.task('watch', ['browser-sync'], function() {
   gulp.watch(src.css, ['css'])
-  gulp.watch(src.test, ['js', 'testMocha'])
-  gulp.watch(src.js, ['js', 'testMocha'])
-  gulp.watch(src.js).on('change', bsync.reload)
-  gulp.watch(src.php, ['php'])
-  gulp.watch(src.php).on('change', bsync.reload)
+  gulp.watch(src.js, ['js', 'testMocha']).on('change', bsync.reload)
+  gulp.watch(src.test, ['testMocha'])
+  gulp.watch(src.php, ['php']).on('change', bsync.reload)
   gulp.watch(src.img, ['img'])
   gulp.watch(src.font, ['font'])
 })
 // DEFAULT
-gulp.task('default', ['watch', 'css', 'js', 'img', 'php', 'font'])
+gulp.task('default', ['watch', 'css', 'js', 'testMocha', 'img', 'php', 'font'])
 
