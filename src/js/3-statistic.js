@@ -77,19 +77,13 @@ function averange(arr){
   return (sum / arr.length)
 }
 
-// Genetaring statistic
-
-
-// start-test
-exports.plus2 = plus2
-exports.dnf = dnf
-exports.del = del
-exports.filterArray = filterArray 
-exports.bestWorstId = bestWorstId
-exports.removeBestWorstArr = removeBestWorstArr
-exports.aoArr = aoArr
-exports.averange = averange
-// end-test
-
-
-
+if (typeof module !== "undefined" && module.exports) {
+  exports.plus2 = plus2
+  exports.dnf = dnf
+  exports.del = del
+  exports.filterArray = filterArray 
+  exports.bestWorstId = bestWorstId
+  exports.removeBestWorstArr = removeBestWorstArr
+  exports.aoArr = aoArr
+  exports.averange = averange
+}

@@ -1,6 +1,6 @@
 // $(document).ready(function(){ 
 
-// start-test
-var exports = module.exports = {}
-// end-test
+if (typeof module !== "undefined" && module.exports) {
+  var exports = module.exports = {}
+}
 

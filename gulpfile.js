@@ -16,7 +16,6 @@ var gulp = require("gulp"),
   uglify         = require("gulp-uglify"),
   sourcemaps     = require("gulp-sourcemaps"), 
   mocha          = require("gulp-mocha"),
-  stripCode      = require("gulp-strip-code"),
   bsync          = require("browser-sync").create()
 
 // FILE DESTINATIONS
@@ -38,12 +37,13 @@ var src = {
     "src/js/1-start.js",
     "src/js/2-timer.js",
     "src/js/3-statistic.js",
-    "src/js/4-statistic.Table.js",
+    "src/js/4-statisticTable.js",
     "src/js/99-end.js"
   ],
   test: [
     // "test/2-timerTest.js",
-    "test/3-statisticTest.js"
+    "test/3-statisticTest.js",
+    "test/4-statisticTableTest.js"
   ],
   img: "src/img/**/*"
 }
@@ -77,10 +77,6 @@ gulp.task('css', function() {
 gulp.task('js', function() {
   return gulp.src(src.js)
     .pipe(sourcemaps.init())
-      .pipe(stripCode({
-        // unfortunately does not support sourcemap, try use it at the end of file
-        pattern: RegExp("([\\t ]*\\/\\/ ?" + "start-test" + " ?)[\\s\\S]*?(\\/\\/ ?" + "end-test" + " ?[\\t ]*\\n?)", "g")
-      }))
     .pipe(plumber())
       // .pipe(uglify())
       .pipe(concat('main.js'))

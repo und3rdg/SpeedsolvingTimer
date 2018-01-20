@@ -1,5 +1,5 @@
 var debug = {
-  debug: 0,
+  debug: 1,
   log: function(x){
     if(this.debug == 1){ console.log(x); }
   }

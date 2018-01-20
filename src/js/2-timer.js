@@ -118,9 +118,9 @@ var TimeTable = {
       .map(function(x){
         x.id = parseFloat(x.id);
         x.times_ms = parseFloat(x.times_ms);
-        x.plus2 = JSON.parse(x.plus2);
-        x.dnf = JSON.parse(x.dnf);
-        x.del = JSON.parse(x.del);
+        x.plus2 = parseFloat(x.plus2);
+        x.dnf = parseFloat(x.dnf);
+        x.del = parseFloat(x.del);
         return x
        })
     // convert strings in tableArray into numbers and boleans
