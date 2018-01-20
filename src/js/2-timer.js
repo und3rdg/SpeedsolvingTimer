@@ -114,7 +114,16 @@ var TimeTable = {
   // tableArray json from mysql:
   // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
   // plus2:"BOOL", dnf:"BOOL", del:"BOOL"
-    tableArray = TimeTable.tableArray;
+    tableArray = TimeTable.tableArray
+      .map(function(x){
+        x.id = parseFloat(x.id);
+        x.times_ms = parseFloat(x.times_ms);
+        x.plus2 = JSON.parse(x.plus2);
+        x.dnf = JSON.parse(x.dnf);
+        x.del = JSON.parse(x.del);
+        return x
+       })
+    // convert strings in tableArray into numbers and boleans
     debug.log(tableArray);
     tableArray.reverse().map(function(arr){
       if(arr.plus2 == true){ var cls = 'trPlus2'};
