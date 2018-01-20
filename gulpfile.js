@@ -33,6 +33,7 @@ var src = {
     "src/js/1-start.js",
     "src/js/2-timer.js",
     "src/js/3-statistic.js",
+    "src/js/4-statistic.Table.js",
     "src/js/99-end.js"
   ],
   test: [

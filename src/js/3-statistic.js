@@ -76,6 +76,10 @@ function averange(arr){
   },0)  
   return (sum / arr.length)
 }
+
+// Genetaring statistic
+
+
 // start-test
 exports.plus2 = plus2
 exports.dnf = dnf
