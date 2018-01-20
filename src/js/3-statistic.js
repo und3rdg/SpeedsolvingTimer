@@ -22,7 +22,7 @@ function del(row){
 }
 
 // Final filtering array
-function fArr(arr){
+function filterArray(arr){
   return arr.
   map(plus2).
   map(dnf).
@@ -84,7 +84,7 @@ function averange(arr){
 exports.plus2 = plus2
 exports.dnf = dnf
 exports.del = del
-exports.fArr = fArr 
+exports.filterArray = filterArray 
 exports.bestWorstId = bestWorstId
 exports.removeBestWorstArr = removeBestWorstArr
 exports.aoArr = aoArr

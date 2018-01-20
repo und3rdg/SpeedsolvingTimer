@@ -110,15 +110,14 @@ gulp.task('font', function() {
 // WATCH
 gulp.task('watch', ['browser-sync', 'testMocha'], function() {
   gulp.watch(src.css, ['css'])
+  gulp.watch(src.test, ['js', 'testMocha'])
   gulp.watch(src.js, ['js', 'testMocha'])
   gulp.watch(src.js).on('change', bsync.reload)
   gulp.watch(src.php, ['php'])
   gulp.watch(src.php).on('change', bsync.reload)
   gulp.watch(src.img, ['img'])
   gulp.watch(src.font, ['font'])
-  // gulp.watch(src.php).on('change', bsync.reload)
 })
-
 // DEFAULT
 gulp.task('default', ['watch', 'css', 'js', 'img', 'php', 'font'])
 

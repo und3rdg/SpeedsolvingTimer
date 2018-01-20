@@ -81,16 +81,16 @@ describe('FILTERING TABLE:', () => {
     })
   })
 
-  describe('fArr() - FINAL filtering array', ()=>{
+  describe('filterArray() - FINAL filtering array', ()=>{
     let arr = [
       {id: 0, times_ms:  05, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 1, times_ms:  11, date: 'date', plus2: 0, dnf: 1, del: 0},
       {id: 2, times_ms:  12, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 3, times_ms:  13, date: 'date', plus2: 0, dnf: 0, del: 1},
-      {id: 4, times_ms:  14, date: 'date', plus2: 0, dnf: 0, del: 0}
+      {id: 4, times_ms:  14, date: 'date', plus2: 1, dnf: 0, del: 0}
     ]
 
-    let result = app.fArr(arr)
+    let result = app.filterArray(arr)
 
     it('should return array', ()=>{
       assert.isArray(result)
@@ -98,12 +98,9 @@ describe('FILTERING TABLE:', () => {
     it('should not by empty', ()=>{
       assert.isNotEmpty(result)
     })
-    it('should have more than 3 items or something')
-    it('should have more than 5 items or something')
-    it('should have more than 14 items or something')
-    it('should have more than 50 items or something')
-    it('should have more than 100 items or something')
-    it('should have more than 1000 items or something')
+    it.only('should by id 4 ', ()=>{
+      assert.equal(result[2].id, 4)
+    })
   })
 })
 
