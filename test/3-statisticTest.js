@@ -132,14 +132,14 @@ describe('3-statistic.js', ()=>{
       {id: 7, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 8, times_ms:  88, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 9, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 10, times_ms:  29, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 11, times_ms:   1, date: 'date', plus2: 0, dnf: 0, del: 0},
+      {id: 10, times_ms:  29, date: 'date', plus2: 1, dnf: 0, del: 0},
+      {id: 11, times_ms:   1, date: 'date', plus2: 0, dnf: 0, del: 1},
       {id: 12, times_ms:  48, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 13, times_ms:  39, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 14, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 15, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 16, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 17, times_ms:  20, date: 'date', plus2: 0, dnf: 0, del: 0},
+      {id: 17, times_ms:  20, date: 'date', plus2: 0, dnf: 1, del: 0},
       {id: 18, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
       {id: 19, times_ms:  60, date: 'date', plus2: 0, dnf: 0, del: 0}
     ]
@@ -206,6 +206,13 @@ describe('3-statistic.js', ()=>{
 
       it('should by NUMBER', ()=>{
         assert.typeOf(result, 'number')
+      })
+    })
+
+    describe('bestTime(arr) - get best time. In use filterArray(arr) and bestWorstId(arr)', ()=>{
+      let result = app.bestTime(arr).times_ms
+      it('should by 304 (best time)', ()=>{
+        assert.equal(result, 30)
       })
     })
 

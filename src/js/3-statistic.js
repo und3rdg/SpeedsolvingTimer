@@ -77,6 +77,12 @@ function averange(arr){
   return (sum / arr.length)
 }
 
+function bestTime(arr){
+  var newArr = filterArray(arr)
+  var best = bestWorstId(newArr).best
+  return newArr[best]
+}
+
 if (typeof module !== "undefined" && module.exports) {
   exports.plus2 = plus2
   exports.dnf = dnf
@@ -86,4 +92,5 @@ if (typeof module !== "undefined" && module.exports) {
   exports.removeBestWorstArr = removeBestWorstArr
   exports.aoArr = aoArr
   exports.averange = averange
+  exports.bestTime = bestTime
 }
