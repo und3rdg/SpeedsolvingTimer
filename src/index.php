@@ -32,51 +32,51 @@
         <tr>
           <td></td>
           <td colspan=2>BEST</td>
-          <td>CURRENT</td>
+          <!-- <td>CURRENT</td> -->
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="top1">
           <td>TOP1</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
-        <tr>
+        <tr class="mo3">
           <td>Mo3</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
-        <tr>
+        <tr class="ao5">
           <td>Ao5</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
-        <tr>
+        <tr class="ao12">
           <td>Ao12</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
         <tr>
-          <td>Mo50</td>
+          <td class="mo50">Mo50</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
-        <tr>
+        <tr class="mo100">
           <td>Mo100</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
         <tr>
-          <td>Mo1000</td>
+          <td class="mo1000">Mo1000</td>
           <td>N/A</td>
           <td>N/A</td>
-          <td>N/A</td>
+          <!-- <td>N/A</td> -->
         </tr>
       </tbody>
     </table>

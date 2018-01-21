@@ -113,19 +113,8 @@ var TimeTable = {
   init: function(){
   // tableArray json from mysql:
   // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
-  // plus2:"BOOL", dnf:"BOOL", del:"BOOL"
-    tableArray = TimeTable.tableArray
-      .map(function(x){
-        x.id = parseFloat(x.id);
-        x.times_ms = parseFloat(x.times_ms);
-        x.plus2 = parseFloat(x.plus2);
-        x.dnf = parseFloat(x.dnf);
-        x.del = parseFloat(x.del);
-        return x
-       })
-    // convert strings in tableArray into numbers and boleans
-    debug.log(tableArray);
-    tableArray.reverse().map(function(arr){
+  // plus2:"NUM", dnf:"NUM", del:"NUM"
+    TimeTable.tableArray.reverse().map(function(arr){
       if(arr.plus2 == true){ var cls = 'trPlus2'};
       if(arr.dnf == true){ var cls = 'trDnf'};
       if(arr.del == true){ var cls = 'trDel'};
@@ -138,6 +127,7 @@ var TimeTable = {
         $('#last_times tbody tr').toggle();
       })
     // still need work, flip table back on start timer and move it from here
+    top1(TimeTable.tableArray)
 
   },
   tableArray: [],
@@ -168,10 +158,11 @@ var TimeTable = {
       dnf:0, 
       del:0
     }
-    tableArray.push(arrPush)
+    TimeTable.tableArray.push(arrPush)
     
     // refresh new action buttons
     TimeTable.timeAction();
+    top1(TimeTable.tableArray)
   },
   timeAction:function(){ 
     // select id of time, and action type
@@ -214,7 +205,15 @@ var Ajax = {
   },
   init: function(){
     $.getJSON( "extract.php", function(data){ 
-      TimeTable.tableArray = data;
+      TimeTable.tableArray = data
+        .map(function(x){
+          x.id = parseFloat(x.id);
+          x.times_ms = parseFloat(x.times_ms);
+          x.plus2 = parseFloat(x.plus2);
+          x.dnf = parseFloat(x.dnf);
+          x.del = parseFloat(x.del);
+          return x
+         })
       Timer.init();
     })
   },
