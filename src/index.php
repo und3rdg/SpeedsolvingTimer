@@ -9,7 +9,7 @@
 <body>
   <main>
   <header>
-    <h1>S<span class="small">PEED</span></br> S<span class="small">OLVING</span></br> T<span class="small">IMER</span></br></h1>
+    <h1>Speed Solving Timer</h1>
   </header>
   <time>
     00.000
@@ -81,9 +81,7 @@
       </tbody>
     </table>
   </section>
-  <!--
-    <footer>Timer in progress</footer>
-  -->
+    <footer><a href="https://github.com/und3rdg/ssTimer">github.com/und3rdg/ssTimer</a></footer>
   </main>
   <script src="/js/main.js"></script>
 </body>
