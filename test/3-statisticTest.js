@@ -122,26 +122,26 @@ describe('3-statistic.js', ()=>{
 
   describe('CALCULATING AVERANGES:', ()=>{
     let arr = [
-      {id: 0, times_ms:  40, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 1, times_ms:  70, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 2, times_ms: 100, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 3, times_ms:  40, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 4, times_ms:  30, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 5, times_ms:  55, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 6, times_ms:  80, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 7, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 8, times_ms:  88, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 9, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 10, times_ms:  29, date: 'date', plus2: 1, dnf: 0, del: 0},
-      {id: 11, times_ms:   1, date: 'date', plus2: 0, dnf: 0, del: 1},
-      {id: 12, times_ms:  48, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 13, times_ms:  39, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 14, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 15, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 16, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 17, times_ms:  20, date: 'date', plus2: 0, dnf: 1, del: 0},
-      {id: 18, times_ms:  50, date: 'date', plus2: 0, dnf: 0, del: 0},
-      {id: 19, times_ms:  60, date: 'date', plus2: 0, dnf: 0, del: 0}
+      {id:  0, times_ms:  40, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  1, times_ms:  70, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  2, times_ms: 100, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  3, times_ms:  40, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  4, times_ms:  30, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  5, times_ms:  55, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  6, times_ms:  80, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  7, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  8, times_ms:  88, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  9, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 10, times_ms:  29, date: '01-01-99', plus2: 1, dnf: 0, del: 0},
+      {id: 11, times_ms:   1, date: '01-01-99', plus2: 0, dnf: 0, del: 1},
+      {id: 12, times_ms:  48, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 13, times_ms:  39, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 14, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 15, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 16, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 17, times_ms:  20, date: '01-01-99', plus2: 0, dnf: 1, del: 0},
+      {id: 18, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id: 19, times_ms:  60, date: '01-01-99', plus2: 0, dnf: 0, del: 0}
     ]
 
     describe('bestWorstId() - get best time id', ()=>{
@@ -204,15 +204,32 @@ describe('3-statistic.js', ()=>{
         assert.equal(result, 50)
       })
 
-      it('should by NUMBER', ()=>{
+      it('should by NUMBER (averange)', ()=>{
         assert.typeOf(result, 'number')
       })
     })
 
     describe('bestTime(arr) - get best time. In use filterArray(arr) and bestWorstId(arr)', ()=>{
-      let result = app.bestTime(arr).times_ms
-      it('should by 304 (best time)', ()=>{
-        assert.equal(result, 30)
+      let result = app.bestTime(arr)
+      it('should by 30 (best time)', ()=>{
+        assert.equal(result.times_ms, 30)
+      })
+      it('should by a NUMBER (best time)', ()=>{
+        assert.typeOf(result.times_ms, 'number')
+      })
+
+      it('should by 4 (id)', ()=>{
+        assert.equal(result.id, 4)
+      })
+      it('should by a NUMBER (id)', ()=>{
+        assert.typeOf(result.id, 'number')
+      })
+
+      it('should by 01-01-99 (time)', ()=>{
+        assert.equal(result.date, '01-01-99')
+      })
+      it('should by a STRING (time)', ()=>{
+        assert.typeOf(result.date, 'string')
       })
     })
 
