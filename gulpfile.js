@@ -54,8 +54,8 @@ gulp.task('browser-sync', function() {
     //     basedir: "./"
     // },
     proxy: "localhost:80",
-    browser: "chromium"
-    open: false,
+    browser: "chromium",
+    open: false
   })
 
 })
