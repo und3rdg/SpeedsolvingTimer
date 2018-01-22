@@ -21,7 +21,7 @@ var gulp = require("gulp"),
 // FILE DESTINATIONS
 var dist = {
   php: "dist",
-  css: "dist/css",
+  css: "dist/css/",
   font: "dist/font",
   js: "dist/js",
   img: "dist/img"
@@ -30,7 +30,8 @@ var dist = {
 var src = {
   php: "src/**/*.php",
   html: "src/**/*.html",
-  css: "src/css/**/*.sass",
+  css: "src/css/main.sass",
+  sass: "src/css/**/*",
   font:"src/font/**/*.ttf",
   js: [
     "src/js/lib/jquery-3.2.1.js",
@@ -115,7 +116,7 @@ console.log(`
 
 // WATCH
 gulp.task('watch', ['browser-sync'], function() {
-  gulp.watch(src.css, ['css'])
+  gulp.watch(src.sass, ['css'])
   gulp.watch(src.js, ['js', 'testMocha']).on('change', bsync.reload)
   gulp.watch(src.test, ['testMocha'])
   gulp.watch(src.php, ['php']).on('change', bsync.reload)

@@ -1,0 +1,19 @@
+.clock
+  min-height: $height_time
+  display: flex
+  justify-content: center
+  align-items: center
+  background: transparent url('/img/ssclock.png') no-repeat center center
+  background-size: contain
+  @media (max-width: 620px)
+    padding-bottom: 5%
+  padding-bottom: 40px
+
+  time
+    font-family: digital
+    @media (max-width: 620px)
+      font-size: 20vw
+    font-size: 130px
+    color: $yellow
+    background: none
+

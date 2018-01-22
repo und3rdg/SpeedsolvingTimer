@@ -1,0 +1,50 @@
+section.statTables
+  max-width: 600px
+  align-self: center
+  table#stats
+    width: 100%
+    tbody
+      margin: 5px 0 
+      display: flex
+      flex-wrap: wrap
+      flex-direction: row
+      justify-content: space-between
+
+      tr
+        min-width: 33%
+        display: flex
+
+  table#last_times
+    width: 100%
+    tr
+      &:nth-child(even)
+        background: $col3
+
+  table 
+    border: solid 2px $col7
+    font-family: digital
+    font-size: 1.4em
+    color: $col6
+    background: $col1
+
+    td 
+      border: solid 1px $col4
+      padding: 3px
+      text-align: right
+
+      .plus2, .dnf, .del, .undel
+        cursor: pointer
+
+      .trPlus2
+        transition: color 1s ease
+        color: $colPlus2
+
+      .trDnf
+        transition: color 1s ease
+        text-decoration: line-through 
+        color: $colDnf
+
+      .trDel
+        display: none
+        color: $colDel
+

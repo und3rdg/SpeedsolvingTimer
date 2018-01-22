@@ -3,86 +3,70 @@
 <head>
   <title>Speedsolving timer</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
   <link rel="icon" href="/img/speedtimer.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <main>
-  <header>
+<main class="container">
+  <header class="header">
     <h1>Speed Solving Timer</h1>
+    <div id="menu">
+      MENU
+    </div>
   </header>
-  <time>
-    00.000
-  </time>
-  <section class="stats">
+  <div class="clock">
+    <div class="bgClock"></div>
+    <time>
+      00.000
+    </time>
+  </div>
+  <section class="statTables">
+    <table id="stats">
+      <tbody>
+        <tr class="top1">
+          <td>TOP1</td>
+          <td>33.333</td>
+        </tr>
+        <tr class="mo3">
+          <td>Mo3</td>
+          <td>34.333</td>
+        </tr>
+        <tr class="ao5">
+          <td>Ao5</td>
+          <td>34.333</td>
+        </tr>
+        <tr class="ao12">
+          <td>Ao12</td>
+          <td>33.333</td>
+        </tr>
+        <tr>
+          <td class="mo50">Mo50</td>
+          <td>33.333</td>
+        </tr>
+        <tr class="mo100">
+          <td>Mo100</td>
+          <td>33.333</td>
+        </tr>
+      </tbody>
+    </table>
     <table id="last_times">
       <thead>
         <tr>
           <td>ID</td>
           <td>TIME</td>
-          <td>SOLVING DATE</td>
+          <td>DATE</td>
           <td class="undel">UNDELETE</td>
         </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
-    <table id="stats">
-      <thead>
-        <tr>
-          <td></td>
-          <td colspan=2>BEST</td>
-          <!-- <td>CURRENT</td> -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="top1">
-          <td>TOP1</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr class="mo3">
-          <td>Mo3</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr class="ao5">
-          <td>Ao5</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr class="ao12">
-          <td>Ao12</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr>
-          <td class="mo50">Mo50</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr class="mo100">
-          <td>Mo100</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-        <tr>
-          <td class="mo1000">Mo1000</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <!-- <td>N/A</td> -->
-        </tr>
-      </tbody>
-    </table>
   </section>
-    <footer><a href="https://github.com/und3rdg/ssTimer">github.com/und3rdg/ssTimer</a></footer>
-  </main>
-  <script src="/js/main.js"></script>
+  <footer>
+    <a href="https://github.com/und3rdg/ssTimer">github.com/und3rdg/ssTimer</a>
+  </footer>
+</main>
+<script src="/js/main.js"></script>
 </body>
 </html>
