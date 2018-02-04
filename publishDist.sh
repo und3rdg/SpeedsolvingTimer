@@ -14,4 +14,4 @@ git cm -m "$commitMsg"
 git push
 
 cd -
-echo '>>>> HAPPY 2 U'
+echo '* all done'
