@@ -11,8 +11,9 @@ var gulp = require("gulp"),
   sass           = require("gulp-sass"),
   cleanCSS       = require("gulp-clean-css"),
   autoPrefixer   = require("gulp-autoprefixer"),
-  order          = require("gulp-order")
+  order          = require("gulp-order"),
   concat         = require("gulp-concat"),
+  include        = require("gulp-include"),
   uglify         = require("gulp-uglify"),
   sourcemaps     = require("gulp-sourcemaps"), 
   mocha          = require("gulp-mocha"),
@@ -66,6 +67,7 @@ gulp.task('css', function() {
   return gulp.src(src.css)
     .pipe(plumber())
     .pipe(sourcemaps.init())
+      .pipe(include())
       .pipe(sass().on('error',sass.logError))
       .pipe(autoPrefixer())
       .pipe(cleanCSS())
@@ -77,8 +79,9 @@ gulp.task('css', function() {
 // JAVASCRIPT
 gulp.task('js', function() {
   return gulp.src(src.js)
-    .pipe(sourcemaps.init())
     .pipe(plumber())
+    .pipe(sourcemaps.init())
+      .pipe(include())
       .pipe(uglify())
       .pipe(concat('main.js'))
     .pipe(sourcemaps.write())
