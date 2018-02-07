@@ -167,7 +167,8 @@ var TimeTable = {
   timeAction:function(){ 
     // select id of time, and action type
     // call function on page load and after solve (to refresh it)
-    $('.plus2, .dnf, .del').on('click', function(){
+
+    var handler = function(){
       var button = $(this);
       var trRow = $(button).parents().eq(1); // line
       var actionClass = button.attr('class'); // +2 or DNF or DEL 
@@ -195,7 +196,12 @@ var TimeTable = {
         $(trRow).toggleClass('trDel');
         $(trRow).fadeOut(500);
       }; 
-    })
+    }
+
+    var $element = $('.plus2, .dnf, .del')
+
+    $element.off()
+    $element.on('click', handler)
   }
 };
 
