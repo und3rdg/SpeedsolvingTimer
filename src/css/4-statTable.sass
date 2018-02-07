@@ -19,21 +19,8 @@ section.statTables
     tr
       &:nth-child(even)
         background: $col3
-
-  table 
-    border: solid 2px $col7
-    font-family: digital
-    font-size: 1.4em
-    color: $col6
-    background: $col1
-
-    td 
-      border: solid 1px $col4
-      padding: 3px
-      text-align: right
-
-      .plus2, .dnf, .del, .undel
-        cursor: pointer
+    .plus2, .dnf, .del, .undel
+      cursor: pointer
 
     .trPlus2
       transition: color 1s ease
@@ -47,4 +34,17 @@ section.statTables
     .trDel
       display: none
       color: $colDel
+
+  table#last_times, table#stats 
+    border: solid 2px $col7
+    font-family: digital
+    font-size: 1.4em
+    color: $col6
+    background: $col1
+
+    td 
+      border: solid 1px $col4
+      padding: 3px
+      text-align: right
+
 
