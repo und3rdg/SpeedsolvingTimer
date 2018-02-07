@@ -7,15 +7,38 @@ header
   background: rgba(0, 0, 0, 0.2)
   box-shadow: 0px 0px 15px 0px 
 
-  h1
+  h1 
     font-family: digital, Arial
-    font-size: 2em
+    font-size: 1.4em
     font-weight: bold
-    padding: 0.5em
+    padding: 0.6em 0.7em 0.9em 0.7em 
     font-variant: small-caps
-    // text-shadow: 0px 0px 5px $c8
-    color: $c0
-    #menu
+    color: $yellow
+    background: #222
+    border: 3px blue solid
+    border-radius: 50%
+    box-shadow: 0px 0px 5px black
+    margin: 5px
+    span
+      display: inline-block // first-line does not work on inline elements
+      &::first-letter
+        font-size: 150%
+
+  #menu
+    color: white
+    margin: 15px
+    width: 50px
+    height: 40px
+    border-color: white
+    border-top: 3px solid
+    border-bottom: 3px solid
+    display: flex
+    align-items: center
+    span
+      width: 100%
+      height: 3px
+      background-color: white
+
 
 
 

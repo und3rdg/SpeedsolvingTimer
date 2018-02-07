@@ -10,9 +10,9 @@
 <body>
 <main class="container">
   <header class="header">
-    <h1>Speed Solving Timer</h1>
+    <h1><span>Speed</span> <span>Solving</span> <span>Timer</span></h1>
     <div id="menu">
-      MENU
+      <span></span>
     </div>
   </header>
   <div class="clock">
