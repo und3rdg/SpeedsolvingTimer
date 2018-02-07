@@ -115,9 +115,10 @@ var TimeTable = {
   // id:"NUM", times_ms:"NUM", date:"YYYY-MM-DD hh:mm:ss", 
   // plus2:"NUM", dnf:"NUM", del:"NUM"
     TimeTable.tableArray.reverse().map(function(arr){
-      if(arr.plus2 == true){ var cls = 'trPlus2'};
-      if(arr.dnf == true){ var cls = 'trDnf'};
-      if(arr.del == true){ var cls = 'trDel'};
+      var cls = ''
+      if(arr.plus2 == true){ cls += 'trPlus2 '};
+      if(arr.dnf == true){ cls += 'trDnf '};
+      if(arr.del == true){ cls += 'trDel '};
 
       return TimeTable.render(arr.id, arr.times_ms, arr.date, cls)
     });
@@ -136,10 +137,10 @@ var TimeTable = {
     var action = '<span class="plus2">+2</span> <span class="dnf">dnf</span> <span class="del">del</span>';
     $('#last_times tbody').prepend(
       '<tr class=' + cls + '>' +
-      '<td>' + id + '</td>' +
-      '<td>' + time.toString().convTime() + '</td>' +
-      '<td>' + date + '</td>' +
-      '<td>' + action + '</td></tr>'
+      '<td class="time-id">' + id + '</td>' +
+      '<td class="time-solve">' + time.toString().convTime() + '</td>' +
+      '<td class="time-date">' + date + '</td>' +
+      '<td class="time-action">' + action + '</td></tr>'
     )
   },  
   // adding new time to table
