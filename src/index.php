@@ -53,10 +53,10 @@
     <table id="last_times">
       <thead>
         <tr>
-          <td>ID</td>
-          <td>TIME</td>
-          <td>DATE</td>
-          <td class="undel">UNDELETE</td>
+          <td class="time-id">ID</td>
+          <td class="time-solve">TIME</td>
+          <td class="time-date">DATE</td>
+          <td class="undel time-action">UNDELETE</td>
         </tr>
       </thead>
       <tbody>

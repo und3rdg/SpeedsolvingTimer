@@ -11,31 +11,62 @@ section.statTables
       tr
         min-width: 33%
         display: flex
+        border: solid 1px $col4
+      td
+        padding: 0 9px 
+        &:first-of-type
+          color: $c2
 
   table#last_times
     width: 100%
-    tr
-      &:nth-child(even)
-        background: $col3
-    .plus2, .dnf, .del, .undel
-      cursor: pointer
-    .trDnf
-      transition: color 1s ease
-      text-decoration: line-through 
-      color: $colDnf
-    .trPlus2
-      transition: color 1s ease
-      color: $colPlus2
-    .trDel
-      display: none
-      color: $colDel
+    td
+      border: solid 1px $col4
+      padding: 3px
+      vertical-align: middle
 
-    .time-id
-    .time-solve
-    .time-date
-      font-size: .9em
-    .time-action
-      width: 115px
+    tr
+      .time-id
+        text-align: right
+        font-size: 70%
+      .time-solve
+        text-align: left
+      .time-date
+        text-align: center
+      .time-action
+        text-align: center
+        width: 115px
+
+    thead
+      .time-id
+        padding-right: 5px
+      .time-solve
+        padding-left: 10px
+      .time-date
+      .time-action
+
+    tbody
+      tr
+        &:nth-child(even)
+          background: $col3
+
+      .plus2, .dnf, .del, .undel
+        cursor: pointer
+      .trDnf
+        transition: color 1s ease
+        text-decoration: line-through 
+        color: $colDnf
+      .trPlus2
+        transition: color 1s ease
+        color: $colPlus2
+      .trDel
+        display: none
+        color: $colDel
+
+      .time-id
+      .time-solve
+      .time-date
+        font-size: .9em
+      .time-action
 
   table#last_times, table#stats 
     width: 100%
@@ -45,10 +76,5 @@ section.statTables
     color: $col6
     background: $col1
 
-    td 
-      border: solid 1px $col4
-      padding: 3px
-      text-align: right
-      vertical-align: middle
 
 
