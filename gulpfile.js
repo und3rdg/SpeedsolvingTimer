@@ -29,19 +29,15 @@ var dist = {
 }
 
 var src = {
+  watch: {
+    js: "src/js/**/*js" ,
+  },
+  js: "src/js/1-start.js" ,
+  css: "src/css/main.sass",
+  sass: "src/css/**/*.sass",
   php: "src/**/*.php",
   html: "src/**/*.html",
-  css: "src/css/main.sass",
-  sass: "src/css/**/*",
-  font:"src/font/**/*.ttf",
-  js: [
-    "src/js/lib/jquery-3.2.1.js",
-    "src/js/1-start.js",
-    "src/js/2-timer.js",
-    "src/js/3-statistic.js",
-    "src/js/4-statisticTable.js",
-    "src/js/99-end.js"
-  ],
+  font: "src/font/**/*.ttf",
   test: [
     // "test/2-timerTest.js",
     "test/3-statisticTest.js",
@@ -62,8 +58,8 @@ gulp.task('browser-sync', function() {
 
 })
 
-// CSS
-gulp.task('css', function() {
+// style
+gulp.task('style', function() {
   return gulp.src(src.css)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -77,7 +73,7 @@ gulp.task('css', function() {
 })
 
 // JAVASCRIPT
-gulp.task('js', function() {
+gulp.task('javascript', function() {
   return gulp.src(src.js)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -119,13 +115,13 @@ console.log(`
 
 // WATCH
 gulp.task('watch', ['browser-sync'], function() {
-  gulp.watch(src.sass, ['css'])
-  gulp.watch(src.js, ['js', 'testMocha']).on('change', bsync.reload)
+  gulp.watch(src.sass, ['style'])
+  gulp.watch(src.watch.js, ['javascript', 'testMocha']).on('change', bsync.reload)
   gulp.watch(src.test, ['testMocha'])
   gulp.watch(src.php, ['php']).on('change', bsync.reload)
   gulp.watch(src.img, ['img'])
   gulp.watch(src.font, ['font'])
 })
 // DEFAULT
-gulp.task('default', ['watch', 'css', 'js', 'testMocha', 'img', 'php', 'font'])
+gulp.task('default', ['watch', 'style', 'javascript', 'testMocha', 'img', 'php', 'font'])
 
