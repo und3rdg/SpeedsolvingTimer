@@ -23,10 +23,12 @@ function del(row){
 
 // Final filtering array
 function filterArray(arr){
-  return arr.
-  map(plus2).
-  map(dnf).
-  filter(del)
+  var cloneArr = JSON.parse(JSON.stringify(arr))
+  return cloneArr
+  .map(plus2)
+  .map(dnf)
+  .filter(del)
+  .reverse()
 }
     
 // Ao(n) remove best and worst time form array
