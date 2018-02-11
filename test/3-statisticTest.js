@@ -89,9 +89,7 @@ describe('3-statistic.js', ()=>{
         {id: 3, times_ms:  13, date: 'date', plus2: 0, dnf: 0, del: 1},
         {id: 4, times_ms:  14, date: 'date', plus2: 1, dnf: 0, del: 0}
       ]
-
       let result = app.filterArray(arr)
-
       it('should return array', ()=> assert.isArray(result))
       it('should not by empty', ()=> assert.isNotEmpty(result))
       it('should by 4(legth of array, reduced 1 DEL record)', ()=> assert.lengthOf(result, 4))
@@ -130,18 +128,19 @@ describe('3-statistic.js', ()=>{
 
     describe('bestWorstId() - get best time id', ()=>{
       let result = app.bestWorstId(arr)
-
       it('should by 11 (best time id)', ()=> assert.equal(result.best, 11))
-
       it('should by 2 (worst time id)', ()=> assert.equal(result.worst, 2))
     })
 
     describe('removeBestWorstArr() - remove best & worst, return array', ()=>{
       let result = app.removeBestWorstArr(arr)
-
       it('should by 4.length', ()=> assert.lengthOf(result, 18))
-
       it('should by ARRAY', ()=> assert.isArray(result))
+    })
+
+    describe('removeInfinityArr() - remove DNF times from array', ()=>{
+      let result = app.removeInfinityArr(arr)
+      it('should by 19 lengthOf', ()=> assert.lengthOf(result, 19))
     })
 
     describe('aoArr(x) - X last times', ()=>{
@@ -155,7 +154,6 @@ describe('3-statistic.js', ()=>{
 
     describe('averange() - calculating averange', ()=>{
       let result = app.averange(arr)
-      
       it('should by 3 (averange)', ()=>{
         let arr = [
           {id: 0, times_ms: 1, date: 'date', plus2: 0, dnf: 0, del: 0},
@@ -167,9 +165,7 @@ describe('3-statistic.js', ()=>{
         let result = app.averange(arr)
         assert.equal(result, 3)
       })
-
       it('should by 50 (avernage)',()=> assert.equal(result, 50))
-
       it('should by NUMBER (averange)', ()=> assert.typeOf(result, 'number'))
     })
   })
