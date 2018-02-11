@@ -181,16 +181,19 @@ describe('3-statistic.js', ()=>{
       {id:  2, times_ms: 100, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id:  3, times_ms:  40, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id:  4, times_ms:  30, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
-      {id:  5, times_ms:  55, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
-      {id:  6, times_ms:  80, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
-      {id:  7, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      // mo13   
+      {id:  5, times_ms:  63, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      // ao12
+      {id:  6, times_ms:  86, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      {id:  7, times_ms:  70, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id:  8, times_ms:  88, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id:  9, times_ms:  50, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id: 10, times_ms:  29, date: '01-01-99', plus2: 1, dnf: 0, del: 0},
       {id: 11, times_ms:   1, date: '01-01-99', plus2: 0, dnf: 0, del: 1},
       {id: 12, times_ms:  48, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id: 13, times_ms:  39, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
-      {id: 14, times_ms:  60, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
+      // ao5
+      {id: 14, times_ms:  70, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id: 15, times_ms:  40, date: '01-01-99', plus2: 0, dnf: 0, del: 1},
       {id: 16, times_ms:  35, date: '01-01-99', plus2: 0, dnf: 0, del: 0},
       {id: 17, times_ms:  20, date: '01-01-99', plus2: 0, dnf: 1, del: 0},
@@ -210,11 +213,15 @@ describe('3-statistic.js', ()=>{
 
     describe('aoTime(arr, mo) - mo3, ao5, ao12, mo50 ect...', ()=>{
       let result = (ao) => app.aoTime(arr, ao)
-      it('MO1 should by av of 60(last time)', ()=> assert.equal(result(1), 60))
-      it('MO2 should by 55(60 and 50)', ()=> assert.equal(result(2), 55))
-      it('MO3 should by infinity', ()=> assert.equal(result(3), 'Infinity'))
-      it('AO5 should not by infinity(av best 3 from last 5)', ()=> assert.notEqual(result(5), 'Infinity'))
-      it('AO5 should by 130', ()=> assert.equal(result(5), 130))
+      it('Mo1 should by av of 60(last time)', ()=> assert.equal(result(1), 60))
+      it('Mo2 should by 55(60 and 50)', ()=> assert.equal(result(2), 55))
+      it('Mo3 should by infinity', ()=> assert.equal(result(3), 'Infinity'))
+      it('Mo4 should by infinity', ()=> assert.equal(result(4), 'Infinity'))
+      it('Ao5 should not by infinity(av 3 from 5)', ()=> assert.notEqual(result(5), 'Infinity'))
+      it('Ao5 should by 60', ()=> assert.equal(result(5), 60))
+      it('Ao12 should by 259', ()=> assert.equal(result(12), 259))
+      it('Ao13 should not by infinity', ()=> assert.notEqual(result(13), 'Infinity'))
+      it('Ao13 should by 224', ()=> assert.equal(result(13), 224))
     })
 
   })

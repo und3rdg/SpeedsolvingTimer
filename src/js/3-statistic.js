@@ -1,4 +1,5 @@
 // FILTERING ARRAY
+/////////////////////////
 
 // +2 peantly 2s
 function plus2(row){
@@ -31,29 +32,43 @@ function filterArray(arr){
   .reverse()
 }
     
+
+// AVERANGES
+/////////////////////////
+
 // Ao(n) remove best and worst time form array
 function bestWorstId(arr){
-  var bestId = 0
-  var worstId = 0 
+  var bestIndex = 0
+  var worstIndex = 0 
   for(var i=0; i < arr.length; i++){
-    if(arr[i].times_ms < arr[bestId].times_ms){
-      bestId = i
+    if(arr[i].times_ms < arr[bestIndex].times_ms){
+      bestIndex = i
     }
-    if(arr[i].times_ms > arr[worstId].times_ms){
-      worstId = i
+    if(arr[i].times_ms > arr[worstIndex].times_ms){
+      worstIndex = i
     }
   }
-  return {best: bestId, worst: worstId}
+  return {best: bestIndex, worst: worstIndex}
 }
 
 function removeBestWorstArr(arr){
-  return arr.
-    filter(function(row){
-      return row.id !== bestWorstId(arr).best
+  var out = arr
+    .filter(function(row, index){
+      return index !== bestWorstId(arr).best
   })
-    .filter(function(row){
-    return row.id !== bestWorstId(arr).worst
+    .filter(function(row, index){
+      return index !== bestWorstId(arr).worst
   }) 
+
+  return out
+}
+
+function removeInfinityArr(arr){
+  var out = arr
+    .filter(function(row){
+      return row.dnf !== 1
+    })
+  return out
 }
 
 // get array of only x times
@@ -68,6 +83,9 @@ function aoArr(arr, ao){
   if(4 < ao && ao <= 12){
     aoArr = removeBestWorstArr(aoArr)
   }
+  if(ao > 12){
+    aoArr = removeInfinityArr(aoArr)
+  }
   return aoArr
 }
 
@@ -79,10 +97,25 @@ function averange(arr){
   return (sum / arr.length)
 }
 
+
+// OUTPUT
+/////////////////////////
+
+// top1
 function bestTime(arr){
   var newArr = filterArray(arr)
   var best = bestWorstId(newArr).best
   return newArr[best]
+}
+
+// mo3, ao5, ao12 mo50, mo100 ect.
+function aoTime(arr, ao){
+  var newArr = filterArray(arr)
+  var removedBestWorst = aoArr(newArr, ao)
+  var avTime = averange(removedBestWorst)
+  return avTime
+
+
 }
 
 if (typeof module !== "undefined" && module.exports) {
@@ -92,7 +125,9 @@ if (typeof module !== "undefined" && module.exports) {
   exports.filterArray = filterArray 
   exports.bestWorstId = bestWorstId
   exports.removeBestWorstArr = removeBestWorstArr
+  exports.removeInfinityArr = removeInfinityArr
   exports.aoArr = aoArr
   exports.averange = averange
   exports.bestTime = bestTime
+  exports.aoTime = aoTime
 }
