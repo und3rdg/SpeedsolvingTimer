@@ -128,7 +128,7 @@ var TimeTable = {
         $('#last_times tbody tr').toggle();
       })
     // still need work, flip table back on start timer and move it from here
-    top1(TimeTable.tableArray)
+    topScore(TimeTable.tableArray)
 
   },
   tableArray: [],
@@ -163,7 +163,7 @@ var TimeTable = {
     
     // refresh new action buttons
     TimeTable.timeAction();
-    top1(TimeTable.tableArray)
+    topScore(TimeTable.tableArray)
   },
   timeAction:function(){ 
     // select id of time, and action type

@@ -35,6 +35,8 @@ section.statTables
       .time-action
         text-align: center
         width: 115px
+      .plus2, .dnf, .del, .undel
+        cursor: pointer
 
     thead
       .time-id
@@ -49,8 +51,6 @@ section.statTables
         &:nth-child(even)
           background: $col3
 
-      .plus2, .dnf, .del, .undel
-        cursor: pointer
       .trDnf
         transition: color 1s ease
         text-decoration: line-through 

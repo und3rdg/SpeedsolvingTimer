@@ -83,7 +83,7 @@ function aoArr(arr, ao){
   if(4 < ao && ao <= 12){
     aoArr = removeBestWorstArr(aoArr)
   }
-  if(ao > 12){
+  if(ao > 12 || ao < 5){
     aoArr = removeInfinityArr(aoArr)
   }
   return aoArr
@@ -112,7 +112,7 @@ function bestTime(arr){
 function aoTime(arr, ao){
   var newArr = filterArray(arr)
   var removedBestWorst = aoArr(newArr, ao)
-  var avTime = averange(removedBestWorst)
+  var avTime = Math.floor(averange(removedBestWorst))
   return avTime
 
 
