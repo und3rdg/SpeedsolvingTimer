@@ -94,7 +94,7 @@ function averange(arr){
   var sum = arr.reduce(function(sum, row){
     return sum += row.times_ms
   },0)  
-  return (sum / arr.length)
+  return Math.floor(sum / arr.length)
 }
 
 
@@ -112,7 +112,7 @@ function bestTime(arr){
 function aoTime(arr, ao){
   var newArr = filterArray(arr)
   var removedBestWorst = aoArr(newArr, ao)
-  var avTime = Math.floor(averange(removedBestWorst))
+  var avTime = averange(removedBestWorst)
   return avTime
 
 
