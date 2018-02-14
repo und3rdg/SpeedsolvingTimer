@@ -1,10 +1,10 @@
 var debug = {
   debug: 1,
-  log: function(x){
-    if(this.debug == 1){ console.log(x); }
+  log: function(msg, args){
+    if(this.debug == 1){ console.log(msg, args); }
   }
 }
-
+console.log('%c       ', 'font-size: 100px; background: url(http://cdn.nyanit.com/nyan2.gif) no-repeat;');
 // }); // document.ready
 
 var tArr = [
