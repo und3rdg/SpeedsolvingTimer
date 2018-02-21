@@ -14,7 +14,7 @@ In use:
 ## sql table:
 | id      | times_ms | date     | plus2 | dnf  | del  | mo3 | mo5 | ao5 | ao12 | mo50 | mo100 |
 |---------|----------|----------|-------|------|------|-----|-----|-----|------|------|-------|
-| AUTOINC | INT(10)  | DATETIME | BOOL  | BOOL | BOOL | int | int | int | int  | int  | int   |
+| AUTOINC | INT(10)  | DATETIME | BOOL  | BOOL | BOOL | INT | INT | INT | INT  | INT  | INT   |
 
 
 
