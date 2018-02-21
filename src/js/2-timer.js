@@ -219,6 +219,11 @@ var Ajax = {
           x.plus2 = parseFloat(x.plus2);
           x.dnf = parseFloat(x.dnf);
           x.del = parseFloat(x.del);
+          x.mo3 = parseFloat(x.mo3);
+          x.ao5 = parseFloat(x.ao5);
+          x.ao12 = parseFloat(x.ao12);
+          x.mo50 = parseFloat(x.mo50);
+          x.mo100 = parseFloat(x.mo100);
           return x
          })
       Timer.init();
