@@ -22,4 +22,4 @@ In use:
 archlinux with nginx, php and mariadb(mysql)
 
 ## public addres
-http://sstimer.tk
+http://sstimer.undg.xyz
